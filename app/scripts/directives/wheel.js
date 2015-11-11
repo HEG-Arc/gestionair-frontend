@@ -28,6 +28,53 @@ angular.module('gestionairFrontendApp')
           return spinning;
         };
 
+        // svg wheel TEST
+        var r = 380;
+        var s = Snap(800, 800);
+        var bg = s.circle(400, 400, r).attr({
+          fill: "#fff",
+          stroke: 'black',
+          'stroke-width': '5px'
+        });
+        var gWheel = s.g();
+
+        var drawPrizes = function () {
+          gWheel.clear();
+          scope.internalControl.prizes.forEach(function ( item ) {
+            gWheel.line(400, 400,
+              400 + Math.sin(Snap.rad(item.startAngle)) * r, 400 + Math.cos(Snap.rad(item.startAngle)) * r)
+              .attr({
+                stroke: 'black',
+                'stroke-width': '5px'
+              });
+              var gi = gWheel.g();
+              var middleAngle = item.startAngle + (( item.endAngle - item.startAngle ) / 2);
+              console.log(middleAngle);
+              gi.image(item.src, 0, 0, 50, 50).transform('T-25,-25R' + (180 - middleAngle) + ', 0, 0')
+              gi.transform('t' + (400 + Math.sin(Snap.rad(middleAngle)) * r*0.7) + ',' + (400 + Math.cos(Snap.rad(middleAngle)) * r * 0.7));
+
+          });
+          var centerC = gWheel.circle(400, 400, 50);
+          centerC.attr({
+              fill: "#bada55",
+              stroke: "#000",
+              strokeWidth: 5
+          });
+          gWheel.text(400, 420, 'W').attr({
+            'text-anchor': 'middle',
+            'font-size': '3em',
+            'font-weight': 'bold',
+            fill: '#fff'
+          });
+        };
+
+        scope.$watch('internalControl.prizes', drawPrizes, true);
+
+        //anchor
+        s.polyline(360, 0,  440, 0, 400, 50);
+
+        // old wheel
+
         var surfaceContext = element[0].getContext('2d');
         var wheel = new Image();
         wheel.onload = function () {
@@ -35,7 +82,7 @@ angular.module('gestionairFrontendApp')
           element[0].height = wheel.height;
           surfaceContext.drawImage(wheel, 0, 0);
         };
-        wheel.src = scope.internalControl.image;
+        wheel.src = 'images/prizewheel.png';
 
         scope.internalControl.spin = function (targetIndex) {
           if(!spinning){
@@ -51,6 +98,8 @@ angular.module('gestionairFrontendApp')
             var currentAngle = 0;
             var spinTimer;
             console.log(targetAngle);
+            gWheel.transform('r0, 400, 400');
+            gWheel.animate({ transform: 'r' + targetAngle + ', 400, 400' }, 6000, mina.easein);
 
             var doSpin = function doSpin() {
 	             // Save the current context - we need this so we can restore it later.
