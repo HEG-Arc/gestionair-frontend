@@ -1,0 +1,35 @@
+<div ng-show="boarding.state == 'INIT'">
+	TODO display images?
+	<form ng-submit="boarding.board()" name="boardingForm">
+	<md-card>
+		<md-card-content>
+			<h2 class="md-title">Inscription</h2>
+			<md-input-container>
+				<label>Nom</label>
+				<input name="name" ng-model="boarding.player.name" required>
+				<div ng-messages="boardingForm.name.$error">
+					<div ng-message="required">Ce champ est requis!</div>
+				</div>
+			</md-input-container>
+			<md-input-container>
+				<label>Email</label>
+				<input type="email" ng-model="boarding.player.email">
+			</md-input-container>
+			<md-input-container>
+				<label>NPA</label>
+				<input type="text" ng-model="boarding.player.npa">
+			</md-input-container>
+		</md-card-content>
+		<md-card-actions layout="row" layout-align="end center">
+			<md-button type="submit" class="md-primary">Jouer</md-button>
+		</md-card-actions>
+	</md-card>
+	</form>
+</div>
+<div ng-show="boarding.state == 'INFO'">
+	<md-button type="submit" class="md-primary" ng-click="boarding.print()">Imprimer ticket</md-button>
+</div>
+<div ng-show="boarding.state == 'PRINT'">
+	Prenez votre ticket et aller au XXX tél.
+	<md-button type="submit" class="md-primary" ng-click="boarding.reset()">Nouveau joueur</md-button>
+</div>

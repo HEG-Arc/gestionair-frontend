@@ -1,0 +1,7 @@
+<wheel control="wheel.wheel"></wheel>
+{{wheel.wheel.isSpinning()}}
+
+<input type="number" ng-model="win">
+<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
+
+{{wheel.wheel.won}}
