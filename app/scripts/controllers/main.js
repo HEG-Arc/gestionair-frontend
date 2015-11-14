@@ -33,6 +33,7 @@ angular.module('gestionairFrontendApp')
     this.login = function (){
       console.log(main.user);
       //admin can access dashboard
+      main.setMode('dashboard');
     };
 
 

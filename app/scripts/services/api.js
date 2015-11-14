@@ -11,6 +11,12 @@ angular.module('gestionairFrontendApp')
   .service('api', function ( $timeout, sim ) {
 
     var api = this;
+
+    //inital dashboard data inital scores
+    //post register, print, scan, bumper
+    //post agi simulate phones
+
+
     //states
     api.players = {}; //id : { name:, state:, score}
     api.scores = [];
@@ -31,7 +37,9 @@ angular.module('gestionairFrontendApp')
     api.getPhone = function ( number ) {
       var phone = api.phones[number];
       if(!phone){
-        phone = {};
+        phone = {
+          number: number
+        };
         api.phones[number] = phone;
       }
       return phone;
@@ -81,7 +89,10 @@ angular.module('gestionairFrontendApp')
           player = api.players[msg.playerId];
           phone = api.getPhone(msg.number);
           phone.correct = msg.correct;
-          //TODO: timeout reset phone
+          $timeout(function(){
+            phone.player = undefined;
+            phone.state = 'ONLINE';
+          }, 1000);
           break;
 
         case 'PLAYER_LIMIT_REACHED':

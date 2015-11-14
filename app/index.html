@@ -27,23 +27,24 @@
       </md-toolbar>
       <md-content layout-padding>
         <md-list>
-          <md-list-item>
-            <p>Onboarding</p>
+          <md-list-item layout="row">
+            <md-button flex ng-href="#/boarding" ng-click="main.toggleLeftMenu()">Boarding</md-button>
           </md-list-item>
-          <md-list-item>
-            <p>Wheel</p>
+          <md-list-item layout="row">
+            <md-button flex ng-href="#/wheel" ng-click="main.toggleLeftMenu()">Wheel</md-button>
           </md-list-item>
-          <md-list-item>
-            <p>Dashboard</p>
+          <md-list-item layout="row">
+            <md-button flex ng-href="#/scores" ng-click="main.toggleLeftMenu()">Scores</md-button>
           </md-list-item>
-          <md-list-item>
-            <p>Scores</p>
+          <md-list-item layout="row">
+            <md-button flex ng-href="#/dashboard" ng-click="main.toggleLeftMenu()">Dashboard</md-button>
           </md-list-item>
+
         </md-list>
       </md-content>
     </md-sidenav>
     <md-content flex>
-      <md-button ng-click="main.toggleLeftMenu()" class="md-primary" ng-if="!main.mode">Menu</md-button>
+      <md-button ng-click="main.toggleLeftMenu()" class="md-primary" ng-if="main.mode=='dashboard'">Menu</md-button>
       <div ng-view=""></div>
     </md-content>
 

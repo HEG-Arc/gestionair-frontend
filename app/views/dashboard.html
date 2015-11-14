@@ -1,1 +1,57 @@
-{{dashboard.api.players}}
+<div layout-padding>
+	<h1>Dashboard</h1>
+	<h2>Players</h2>
+	<div layout="row"  layout-align="center center">
+		<div layout="column" flex="80">
+			<div class="info" layout="row">
+				<div flex ng-click="dashboard.detailState = 'CREATED'">
+					{{dashboard.stats.CREATED}}
+					<span>CREATED</span></div>
+				<div flex ng-click="dashboard.detailState = 'PRINTED'">
+					{{dashboard.stats.PRINTED}}
+					<span>PRINTED</span></div>
+				<div flex ng-click="dashboard.detailState = 'PLAYING'">
+					{{dashboard.stats.PLAYING}}
+					<span>PLAYING</span></div>
+				<div flex ng-click="dashboard.detailState = 'LIMIT_REACHED'">
+					{{dashboard.stats.LIMIT_REACHED}}
+					<span>LIMIT_REACHED</span></div>
+				<div flex ng-click="dashboard.detailState = 'WON'">
+					{{dashboard.stats.WON}}
+					<span>WON</span></div>
+			</div>
+		</div>
+	</div>
+	<h4>Details</h4>
+	<div layout="row"  layout-align="center center">
+		<div layout="column" flex="80" class="table">
+			<div class="header" layout="row">
+				<div flex="5">#</div>
+				<div flex="15">Scores</div>
+				<div flex="50">Nom</div>
+				<div flex="30">Langues</div>
+			</div>
+			<div class="row" ng-repeat="p in dashboard.displayPlayers(dashboard.detailState) | orderBy: ['-id'] track by p.id" layout="row">
+				<div flex="5">{{$index + 1}}</div>
+				<div flex="15">{{p.score * 100}}</div>
+				<div flex="50">{{p.name}}</div>
+				<div flex="30">{{p.languages}}</div>
+			</div>
+		</div>
+	</div>
+
+	<h2>Phones</h2>
+	<ul>
+		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number">{{p.number}} {{p.state}} {{p.player.name}}</li>
+	</ul>
+
+
+	<h2>Debug</h2>
+	<div layout="row">
+		<md-input-container>
+			<input placeholder="id">
+		</md-input-container>
+		<md-button class="md-raised md-primary">SCAN</md-button>
+		<md-button class="md-raised md-warn">BUMPER</md-button>
+	</div>
+</div>
