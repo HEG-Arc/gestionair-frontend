@@ -9,6 +9,37 @@ body {
   padding: 0;
 }
 
+h2 {
+  color: #008FD1;
+  font-size: 60pt;
+}
+
+.indicator {
+  background-color: #B8B8B8;
+  color: #D9D9D9;
+  border-radius: 100px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+.indicator.active{
+  background-color: #008FD1;
+  color: #fff;
+}
+
+.guide {
+  font-size: 3em;
+}
+
+.blue-background {
+  background-color: #ECF4FC;
+}
+
 
 .text-right {
   text-align: right;
@@ -99,4 +130,10 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+#init {
+  background-image: url('../images/boarding_intro.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

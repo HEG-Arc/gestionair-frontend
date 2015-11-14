@@ -21,11 +21,11 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <md-content flex>
+    <md-content flex layout="column">
       <md-button id="menu-button" ng-click="main.toggleLeftMenu()" class="md-icon-button md-primary" ng-if="main.mode=='dashboard'">
         <md-icon md-svg-icon="images/ic_settings_black_48px.svg"></md-icon>
       </md-button>
-      <div ng-view=""></div>
+      <div ng-view="" flex layout="column"></div>
     </md-content>
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="left" ng-cloak="">
       <md-toolbar class="md-theme-indigo">
