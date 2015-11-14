@@ -5,13 +5,13 @@ describe('Controller: OnboardingCtrl', function () {
   // load the controller's module
   beforeEach(module('gestionairFrontendApp'));
 
-  var OnboardingCtrl,
+  var BoardingCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    OnboardingCtrl = $controller('BoardingCtrl', {
+    BoardingCtrl = $controller('BoardingCtrl', {
       $scope: scope
       // place here mocked dependencies
     });

@@ -8,7 +8,10 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('DashboardCtrl', function () {
-// display states of player in progress
-// display summary stats
+  .controller('DashboardCtrl', function ( api ) {
+    // display states of player in progress
+    // display summary stats
+    this.api = api;
+    api.startSim();
+
   });

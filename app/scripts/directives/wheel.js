@@ -30,9 +30,9 @@ angular.module('gestionairFrontendApp')
 
         // svg wheel TEST
         var r = 380;
-        var s = Snap(800, 800);
-        var bg = s.circle(400, 400, r).attr({
-          fill: "#fff",
+        var s = new Snap(800, 800);
+        s.circle(400, 400, r).attr({
+          fill: '#fff',
           stroke: 'black',
           'stroke-width': '5px'
         });
@@ -50,14 +50,14 @@ angular.module('gestionairFrontendApp')
               var gi = gWheel.g();
               var middleAngle = item.startAngle + (( item.endAngle - item.startAngle ) / 2);
               console.log(middleAngle);
-              gi.image(item.src, 0, 0, 50, 50).transform('T-25,-25R' + (180 - middleAngle) + ', 0, 0')
+              gi.image(item.src, 0, 0, 50, 50).transform('T-25,-25R' + (180 - middleAngle) + ', 0, 0');
               gi.transform('t' + (400 + Math.sin(Snap.rad(middleAngle)) * r*0.7) + ',' + (400 + Math.cos(Snap.rad(middleAngle)) * r * 0.7));
 
           });
           var centerC = gWheel.circle(400, 400, 50);
           centerC.attr({
-              fill: "#bada55",
-              stroke: "#000",
+              fill: '#bada55',
+              stroke: '#000',
               strokeWidth: 5
           });
           gWheel.text(400, 420, 'W').attr({
