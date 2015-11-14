@@ -92,7 +92,9 @@ angular.module('gestionairFrontendApp')
           $timeout(function(){
             phone.player = undefined;
             phone.state = 'ONLINE';
-          }, 1000);
+            phone.flag = '';
+            phone.correct = '';
+          }, 2000);
           break;
 
         case 'PLAYER_LIMIT_REACHED':

@@ -42,7 +42,7 @@
 
 	<h2>Phones</h2>
 	<ul>
-		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number">{{p.number}} {{p.state}} {{p.player.name}}</li>
+		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number">{{p.number}} {{p.state}} {{p.player.name}} : {{p.flag}} : {{p.correct}}</li>
 	</ul>
 
 

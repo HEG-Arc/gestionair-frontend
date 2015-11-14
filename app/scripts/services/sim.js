@@ -59,7 +59,7 @@ angular.module('gestionairFrontendApp')
                   number: number,
                   correct: correct
                 });
-              }, 100);
+              }, 1000);
               p.attempts++;
               p.state = 'PLAYING';
             }
@@ -132,6 +132,11 @@ angular.module('gestionairFrontendApp')
     this.run = function ( api ) {
       var step = 0;
       interval = $interval(function(){
+        sim.players.forEach(function(p){
+          if( Math.random() > 0.5 ) {
+            p.step(api);
+          }
+        });
         //create a player
         var player = new Player(1000 + step);
         api.handleEvent({
@@ -140,11 +145,7 @@ angular.module('gestionairFrontendApp')
         });
         step++;
         sim.players.push(player);
-
-        sim.players.forEach(function(p){
-          p.step(api);
-        });
-      }, 1000);
+      }, 3000);
     };
 
     this.randomName = function () {
