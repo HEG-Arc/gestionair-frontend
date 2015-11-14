@@ -21,6 +21,7 @@ angular.module('gestionairFrontendApp')
     this.print = function () {
       boarding.state = 'PRINT';
       // timeout
+      //TODO config on server
       $timeout(boarding.reset, 3000);
     };
 

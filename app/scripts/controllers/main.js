@@ -26,8 +26,13 @@ angular.module('gestionairFrontendApp')
 
     this.handleKeyPress = function ( event ){
       if( event.ctrlKey && event.shiftKey && event.keyCode === 24 ){
-        main.setMode('');
+        main.logout();
       }
+    };
+
+    this.logout = function(){
+      main.setMode('');
+      //remove admin?
     };
 
     this.login = function (){

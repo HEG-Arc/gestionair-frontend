@@ -21,7 +21,13 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-cloak="">
+    <md-content flex>
+      <md-button id="menu-button" ng-click="main.toggleLeftMenu()" class="md-icon-button md-primary" ng-if="main.mode=='dashboard'">
+        <md-icon md-svg-icon="images/ic_settings_black_48px.svg"></md-icon>
+      </md-button>
+      <div ng-view=""></div>
+    </md-content>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="left" ng-cloak="">
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Menu</h1>
       </md-toolbar>
@@ -39,14 +45,12 @@
           <md-list-item layout="row">
             <md-button flex ng-href="#/dashboard" ng-click="main.toggleLeftMenu()">Dashboard</md-button>
           </md-list-item>
-
+          <md-list-item layout="row">
+            <md-button flex class="md-warn" ng-href="#/dashboard" ng-click="main.logout()">Logout</md-button>
+          </md-list-item>
         </md-list>
       </md-content>
     </md-sidenav>
-    <md-content flex>
-      <md-button ng-click="main.toggleLeftMenu()" class="md-primary" ng-if="main.mode=='dashboard'">Menu</md-button>
-      <div ng-view=""></div>
-    </md-content>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
