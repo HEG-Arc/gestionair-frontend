@@ -1,9 +1,14 @@
-<wheel control="wheel.wheel"></wheel>
-{{wheel.wheel.isSpinning()}}
+<div layout-align="center center" layout="column" flex>
+	<wheel control="wheel.wheel"></wheel>
+	<div>
+		<h3>debug</h3>
+		{{wheel.wheel.isSpinning()}}
 
-<input type="number" ng-model="win">
-<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
+		<input type="number" ng-model="win">
+		<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
 
-{{wheel.wheel.won}}
+		{{wheel.wheel.won}}
 
-<md-button ng-click="wheel.testWheelItemChange()">test wheel change</md-button>
+		<md-button ng-click="wheel.testWheelItemChange()">test wheel change</md-button>
+	</div>
+</div>

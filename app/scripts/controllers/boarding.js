@@ -19,7 +19,7 @@ angular.module('gestionairFrontendApp')
 
     };
 
-    var timer = undefined;
+    var timer;
     this.print = function () {
       boarding.state = 'PRINT';
       // timeout
