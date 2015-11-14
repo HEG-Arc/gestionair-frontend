@@ -12,6 +12,6 @@ angular.module('gestionairFrontendApp')
     // display states of player in progress
     // display summary stats
     this.api = api;
-    api.startSim();
+
 
   });

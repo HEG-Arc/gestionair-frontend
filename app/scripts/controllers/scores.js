@@ -8,7 +8,7 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('ScoresCtrl', function () {
-    //get inital score
-    //connect to events display new scores
+  .controller('ScoresCtrl', function (api) {
+    var scores = this;
+    scores.api = api;
   });

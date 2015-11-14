@@ -1,27 +1,16 @@
-TODO animate insert of new player score
-<table>
-	<thead>
-		<tr>
-			<th>Nom</th>
-			<th>Score</th>
-			<th>Langues</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>AAAA</td>
-			<td>322</td>
-			<td>EN, FR, DE</td>
-		</tr>
-		<tr>
-			<td>AsdaAA</td>
-			<td>122</td>
-			<td>FR, DE</td>
-		</tr>
-		<tr>
-			<td>dddAAA</td>
-			<td>22</td>
-			<td>RU, FR, DE</td>
-		</tr>
-	</tbody>
-</table>
+<div layout="row"  layout-align="center center">
+	<div layout="column" flex="80" class="table">
+		<div class="header" layout="row">
+			<div flex="5">#</div>
+			<div flex="15">Scores</div>
+			<div flex="50">Nom</div>
+			<div flex="30">Langues</div>
+		</div>
+		<div class="row" ng-repeat="p in scores.api.scores | orderBy: ['-score', '-scan_time'] track by p.id" layout="row">
+			<div flex="5">{{$index + 1}}</div>
+			<div flex="15">{{p.score * 100}}</div>
+			<div flex="50">{{p.name}}</div>
+			<div flex="30">{{p.languages}}</div>
+		</div>
+	</div>
+</div>

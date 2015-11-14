@@ -15,12 +15,15 @@ angular.module('gestionairFrontendApp')
 
     var Player = function Player( id ) {
       var p = this;
+
       this.id = id;
       this.name = sim.randomName();
       this.npa = sim.randomNpa();
       this.state = 'CREATED';
       this.attempts = 0;
+      this.score = 0;
       this.start_time = new Date();
+
       this.step = function ( api ) {
           if (p.state === 'CREATED') {
             api.handleEvent({
@@ -48,13 +51,15 @@ angular.module('gestionairFrontendApp')
               });
               //Timeout response < steptime
               $timeout(function(){
+                var correct = Math.round(Math.random());
+                p.score += correct;
                 api.handleEvent({
                   type: 'PLAYER_ANSWERED',
                   playerId: p.id,
                   number: number,
-                  correct: Math.round(Math.random())
+                  correct: correct
                 });
-              }, 1000);
+              }, 100);
               p.attempts++;
               p.state = 'PLAYING';
             }
@@ -65,26 +70,33 @@ angular.module('gestionairFrontendApp')
                 type: 'PLAYER_SCANNED',
                 playerId: p.id,
                 state: 'PLAYING',
+                score: p.score,
                 attempts: p.attempts, //?
                 timestamp: new Date()
               });
             } else{
-              if (p.score < 300) {
+              if (p.score < 2) {
+                p.languages = 'FR';
                 // pen
                 api.handleEvent({
                   type: 'PLAYER_SCANNED',
                   playerId: p.id,
                   state: 'SCANNED_PEN',
+                  score: p.score,
+                  languages: p.languages,
                   timestamp: new Date()
                 });
                 //save
                 p.state = 'WON';
               } else {
                 //show wheel
+                p.languages = 'EN, FR';
                 api.handleEvent({
                   type: 'PLAYER_SCANNED',
                   playerId: p.id,
                   state: 'SCANNED_WHEEL',
+                  score: p.score,
+                  languages: p.languages,
                   prizes: [], //TODO
                   timestamp: new Date()
                 });
@@ -96,6 +108,7 @@ angular.module('gestionairFrontendApp')
                 type: 'WHEEL_START',
                 playerId: p.id,
                 prize: 1, //index of prize?
+                wheel_duration: 2000,
                 timestamp: new Date()
               });
               p.state = 'WON';
@@ -106,6 +119,7 @@ angular.module('gestionairFrontendApp')
                 playerId: p.id,
                 state: 'WON',
                 score: p.score,
+                languages: p.languages,
                 timestamp: new Date() //should be last scan/wheel time
               });
             }
@@ -130,7 +144,7 @@ angular.module('gestionairFrontendApp')
         sim.players.forEach(function(p){
           p.step(api);
         });
-      }, 2000);
+      }, 1000);
     };
 
     this.randomName = function () {

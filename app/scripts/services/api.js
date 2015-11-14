@@ -8,11 +8,12 @@
  * Service in the gestionairFrontendApp.
  */
 angular.module('gestionairFrontendApp')
-  .service('api', function ( sim ) {
+  .service('api', function ( $timeout, sim ) {
 
     var api = this;
     //states
     api.players = {}; //id : { name:, state:, score}
+    api.scores = [];
     api.phones = {}; //number : {state: 'offline', player, flag}
     api.wheel = {
       player: undefined,
@@ -78,7 +79,8 @@ angular.module('gestionairFrontendApp')
 
         case 'PLAYER_ANSWERED':
           player = api.players[msg.playerId];
-          phone[msg.number].correct = msg.correct;
+          phone = api.getPhone(msg.number);
+          phone.correct = msg.correct;
           //TODO: timeout reset phone
           break;
 
@@ -91,11 +93,6 @@ angular.module('gestionairFrontendApp')
         case 'PLAYER_SCANNED':
           //error done, pen, wheel or play more (option to get pen?)
 
-          player = api.players[msg.playerId];
-          player.scan_time = msg.timestamp;
-          player.score = msg.score;
-          player.state = msg.state;
-
 
           //THIS LOGIC ON SERVER
           if (msg.state === 'LIMIT_REACHED') {
@@ -105,21 +102,27 @@ angular.module('gestionairFrontendApp')
           }
 
           //local state for wheel
-          api.wheel.player = player;
-          //TODO maybe queue system?
 
-          if (player.state === 'SCANNED_WHEEL'){
-            //show wheel msg.prizes
-          } else if (player.state === 'SCANNED_PEN') {
-            //show pen
+          //TODO maybe queue system?
+          player = api.players[msg.playerId];
+          player.state = msg.state;
+          if (player.state === 'WON') {
+            //already prize
           } else if (player.state === 'PLAYING') {
             //go play
-          } else if (player.state === 'WON') {
-            //already prize
           } else {
-            // error
-          }
+            player.scan_time = msg.timestamp;
+            player.score = msg.score;
+            player.languages = msg.languages;
+            if (player.state === 'SCANNED_WHEEL'){
+              //show wheel msg.prizes
 
+            } else if (player.state === 'SCANNED_PEN') {
+              //show pen
+              api.scores.push(player);
+            }
+          }
+          api.wheel.player = player;
           break;
 
         case 'WHEEL_START': //== 'PLAYER_WON'
@@ -127,6 +130,12 @@ angular.module('gestionairFrontendApp')
           player.wheel_time = msg.timestamp;
           player.prize = msg.prize;
           //LOCAL event wheel start
+          api.scores.push(player);
+
+          $timeout(function(){
+            //api.scores.push(player);
+          }, msg.wheel_duration);
+
           break;
 
         case 'PHONE_RINGING':

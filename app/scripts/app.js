@@ -47,4 +47,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function(api){
+    api.startSim();
   });
