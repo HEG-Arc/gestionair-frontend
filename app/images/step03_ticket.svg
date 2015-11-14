@@ -18,7 +18,7 @@
    style="enable-background:new 0 0 381.3 381.3;"
    xml:space="preserve"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="test-04.svg"><metadata
+   sodipodi:docname="step03_ticket.svg"><metadata
      id="metadata332"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
@@ -35,13 +35,13 @@
      inkscape:window-height="1129"
      id="namedview328"
      showgrid="false"
-     inkscape:zoom="0.87530661"
-     inkscape:cx="464.74854"
-     inkscape:cy="213.50263"
+     inkscape:zoom="1.7506132"
+     inkscape:cx="356.13026"
+     inkscape:cy="218.26305"
      inkscape:window-x="2746"
      inkscape:window-y="222"
      inkscape:window-maximized="0"
-     inkscape:current-layer="Layer_1" /><style
+     inkscape:current-layer="g296" /><style
      type="text/css"
      id="style3">
 	.st0{clip-path:url(#SVGID_2_);fill:#00425D;}
@@ -746,9 +746,14 @@
        style="clip-path:url(#SVGID_27_);"
        id="g296"
        clip-path="url(#SVGID_27_)"><text
-         transform="matrix(1 0 0 1 139.9844 110.7847)"
+         transform="translate(139.9844,110.7847)"
          class="st88 st89"
-         id="text298">12345</text>
+         id="text298"
+         x="40.419842"
+         y="0"
+         style="font-size:30.69330025px;font-family:ArialMT"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
+           id="code">12345</tspan></text>
 </g><ellipse
        style="clip-path:url(#SVGID_27_);fill:none;stroke:#C53988;stroke-width:11.949;stroke-miterlimit:10;"
        cx="183"

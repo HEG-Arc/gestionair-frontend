@@ -1,40 +1,5 @@
-<div ng-show="boarding.state == 'INIT'" flex ng-click="boarding.state = 'FORM'" class="guide">
-	<div layout="row" class="header">
-		<h2>Prêt(e) à participer ?<br/>
-		Voici comment faire...</h2>
-		<span flex></span>
-		<div class="indicator active">1</div>
-		<div class="indicator">2</div>
-	</div>
-	<div layout="row" layout-align="center center">
-		<div flex></div>
-		<div flex="20">
-			<object data="images/step01_step_ticket.svg" type="image/svg+xml"></object>
-			<p>Inscrivez-vous et prenez votre ticket</p>
-		</div>
-		<div flex></div>
-		<div flex="20">
-			<object data="images/step02_phone_ringing.svg" type="image/svg+xml"></object>
-			<p>Lorsqu’un téléphone sonne, décrochez-le</p>
-		</div>
-		<div flex></div>
-		<div flex="40" layout="column">
-			<div layout="row" flex>
-				<div flex="50">
-					<object data="images/step03_ticket.svg" type="image/svg+xml"></object>
-				</div>
-				<div flex="50">
-					<object data="images/step04_dial.svg" type="image/svg+xml"></object>
-				</div>
-			</div>
-			<p>Saisissez sur le téléphone le numéro indiqué sur votre ticket pour vous identifier</p>
-		</div>
-		<div flex></div>
-	</div>
-<!-- //$0.contentDocument.getElementsByClassName('st11')[0].textContent=123 -->
-</div>
 
-<div ng-show="boarding.state == 'INI'" id="init" flex ng-click="boarding.state = 'FORM'"></div>
+<div ng-show="boarding.state == 'INIT'" id="init" flex ng-click="boarding.state = 'FORM'"></div>
 <div ng-show="boarding.state == 'FORM'" layout="row" flex layout-align="center center" class="blue-background">
 	<form ng-submit="boarding.board()" name="boardingForm">
 	<md-card>
@@ -62,10 +27,94 @@
 	</md-card>
 	</form>
 </div>
-<div ng-show="boarding.state == 'INFO'">
-	<md-button type="submit" class="md-primary" ng-click="boarding.print()">Imprimer ticket</md-button>
+<div ng-show="boarding.state == 'GUIDE1'" flex ng-click="boarding.state = 'GUIDE2'" class="guide">
+	<div layout="row" class="header" flex>
+		<h2>Prêt(e) à participer ?<br/>
+		Voici comment faire...</h2>
+		<span flex></span>
+		<div class="indicator active">1</div>
+		<div class="indicator">2</div>
+	</div>
+	<div layout="row" layout-align="center center">
+		<div flex="20">
+			<object data="images/step01_step_ticket.svg" type="image/svg+xml"></object>
+		</div>
+		<div flex></div>
+		<div flex="20">
+			<object data="images/step02_phone_ringing.svg" type="image/svg+xml"></object>
+		</div>
+		<div flex></div>
+		<div flex="20" layout="column">
+			<object data="images/step03_ticket.svg" type="image/svg+xml"></object>
+		</div>
+		<div flex></div>
+		<div flex="20">
+			<object data="images/step04_dial.svg" type="image/svg+xml"></object>
+		</div>
+	</div>
+	<div layout="row" layout-align="begin center">
+		<div flex="20">
+			<p>Inscrivez-vous et prenez votre ticket</p>
+		</div>
+		<div flex></div>
+		<div flex="20">
+			<p>Lorsqu’un téléphone sonne, décrochez-le</p>
+		</div>
+		<div flex></div>
+		<div flex="40" layout="column">
+			<p>Saisissez sur le téléphone le numéro indiqué sur votre ticket pour vous identifier</p>
+		</div>
+	</div>
 </div>
-<div ng-show="boarding.state == 'PRINT'">
-	Prenez votre ticket et aller au XXX tél.
-	<md-button type="submit" class="md-primary" ng-click="boarding.reset()">Nouveau joueur</md-button>
+<div ng-show="boarding.state == 'GUIDE2'" flex ng-click="boarding.print()" class="guide">
+	<div layout="row" class="header" flex>
+		<h2>Prêt(e) à participer ?<br/>
+		Voici comment faire...</h2>
+		<span flex></span>
+		<div class="indicator">1</div>
+		<div class="indicator active">2</div>
+	</div>
+	<div layout="row" layout-align="center center">
+		<div flex="20">
+			<object data="images/step05_listen.svg" type="image/svg+xml"></object>
+		</div>
+		<div flex></div>
+		<div flex="20">
+			<object data="images/step06_answer.svg" type="image/svg+xml"></object>
+		</div>
+		<div flex></div>
+		<div flex="20" layout="column">
+			<object data="images/step07_hangup.svg" type="image/svg+xml"></object>
+		</div>
+		<div flex></div>
+		<div flex="20">
+			<object data="images/step08_wait.svg" type="image/svg+xml"></object>
+		</div>
+	</div>
+	<div layout="row" layout-align="begin center">
+		<div flex="20">
+			<p>Écoutez la demande et cherchez la bonne solution !</p>
+		</div>
+		<div flex></div>
+		<div flex="20">
+			<p>Déviez l’appel vers le bon département</p>
+		</div>
+		<div flex></div>
+		<div flex="40" layout="column">
+			<p>Raccrochez le téléphone et attendez qu’un téléphone sonne à nouveau pour répondre à la prochaine question</p>
+		</div>
+	</div>
+</div>
+<div ng-show="boarding.state == 'PRINT'" class="guide-end">
+	<div layout="row">
+		<div flex="50" layout="column">
+			<h2>Une fois votre mission accomplie, venez jouer à la roue de la fortune et remportez de nombreux prix !</h2>
+			<span flex></span>
+			<h3>N'oubliez pas votre ticket!</h3>
+			<p><md-button type="submit" class="md-primary" ng-click="boarding.reset()">Nouveau joueur</md-button></p>
+		</div>
+		<div flex="50">
+			<object data="images/wheel.svg" type="image/svg+xml"></object>
+		</div>
+	</div>
 </div>
