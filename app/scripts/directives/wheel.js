@@ -89,8 +89,10 @@ angular.module('gestionairFrontendApp')
         s.polyline(360, 0,  440, 0, 400, 50);
 
 
-        scope.internalControl.spin = function (targetIndex) {
-          if(!spinning){
+        scope.internalControl.spin = function (options) {
+          var targetIndex = options.prize || 0;
+          var duration = options.duration || 1000;
+          if(!spinning){ // TODO? what hapens to event?
             scope.internalControl.won = undefined;
             spinning = true;
             var stopAngle = Math.floor(scope.internalControl.prizes[targetIndex].startAngle + (Math.random() * (scope.internalControl.prizes[targetIndex].endAngle - scope.internalControl.prizes[targetIndex].startAngle)));
@@ -100,7 +102,7 @@ angular.module('gestionairFrontendApp')
             stopAngle = stopAngle + randInt * 360;
 
             gWheel.transform('r0, 400, 400');
-            gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, 1000 + randInt * 500, mina.easein, function(){
+            gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration + randInt * 500, mina.easein, function(){
               scope.$apply(function(){
                 spinning = false;
                 scope.internalControl.won = scope.internalControl.prizes[targetIndex];

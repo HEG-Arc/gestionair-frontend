@@ -8,7 +8,7 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('WheelCtrl', function ($scope) {
+  .controller('WheelCtrl', function ($scope, $timeout, api) {
     var wheel = this;
     $scope.win = 1;
 
@@ -34,9 +34,19 @@ angular.module('gestionairFrontendApp')
         //{'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}
       ]
     };
+
     this.testWheelItemChange = function (){
       wheel.wheel.prizes.push({'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360});
       wheel.wheel.prizes[6].endAngle = 314;
       wheel.wheel.prizes[3].src = 'images/prizewheel.png';
     };
+
+    $timeout(function(){
+      api.registerWheel(wheel.wheel);
+    }, 1);
+
+    $scope.$on('$destroy', function() {
+      api.unregisterWheel(wheel.wheel);
+    });
+
   });

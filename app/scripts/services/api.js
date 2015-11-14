@@ -25,6 +25,21 @@ angular.module('gestionairFrontendApp')
       player: undefined,
       //prizes
     };
+    var wheels = [];
+
+    api.registerWheel = function (wheel) {
+      wheels.push(wheel);
+    };
+
+    api.unregisterWheel = function (wheel) {
+      wheels.splice(wheels.indexOf(wheel), 1);
+    };
+
+    api.startWheels = function (options){
+      wheels.forEach(function(w){
+        w.spin(options);
+      });
+    };
 
     api.sim = false;
     api.startSim = function(){
@@ -105,31 +120,15 @@ angular.module('gestionairFrontendApp')
 
         case 'PLAYER_SCANNED':
           //error done, pen, wheel or play more (option to get pen?)
-
-
-          //THIS LOGIC ON SERVER
-          if (msg.state === 'LIMIT_REACHED') {
-
-          } else {
-            //player.state == keep current_state
-          }
-
-          //local state for wheel
-
           //TODO maybe queue system?
           player = api.players[msg.playerId];
           player.state = msg.state;
-          if (player.state === 'WON') {
-            //already prize
-          } else if (player.state === 'PLAYING') {
-            //go play
-          } else {
+          if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {
             player.scan_time = msg.timestamp;
             player.score = msg.score;
             player.languages = msg.languages;
             if (player.state === 'SCANNED_WHEEL'){
               //show wheel msg.prizes
-
             } else if (player.state === 'SCANNED_PEN') {
               //show pen
               api.scores.push(player);
@@ -142,11 +141,12 @@ angular.module('gestionairFrontendApp')
           player = api.players[msg.playerId];
           player.wheel_time = msg.timestamp;
           player.prize = msg.prize;
+
           //LOCAL event wheel start
-          api.scores.push(player);
+          api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
           $timeout(function(){
-            //api.scores.push(player);
+            api.scores.push(player);
           }, msg.wheel_duration);
 
           break;
