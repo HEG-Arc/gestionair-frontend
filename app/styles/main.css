@@ -154,3 +154,42 @@ h2 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.slideshow .fade{
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  position: absolute;
+}
+
+.fade.ng-hide-remove, .fadein.ng-hide-remove{
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.fade.ng-hide-remove-active, .fadein.ng-hide-remove-active {
+  opacity: 1;
+}
+
+.fade.ng-hide-add{
+  transition: 1s linear all;
+  opacity: 1;
+}
+
+.fade.ng-hide-add-active {
+  opacity: 0;
+}
+
+
+.won {
+    position: absolute;
+    top: 30%;
+    background-color: rgb(3, 149, 216);
+    padding: 1em;
+    border: 5px solid rgb(0, 143, 209);
+    left: 0;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: #fff;
+    width: 60%;
+}

@@ -16,6 +16,18 @@ angular.module('gestionairFrontendApp')
     //post register, print, scan, bumper
     //post agi simulate phones
 
+    //get from server
+    api.config = {
+      boarding_reset: 10000,
+      slideshow_timer: 3000,
+      slideshow: [
+        'images/slideshow/ARC1.jpg',
+        'images/slideshow/ARC2.jpg',
+        'images/slideshow/ARC3.jpg'
+      ]
+    };
+
+    api.isSlideshowVisible = false;
 
     //states
     api.players = {}; //id : { name:, state:, score}
@@ -139,9 +151,14 @@ angular.module('gestionairFrontendApp')
             if (player.state === 'SCANNED_WHEEL'){
               //show wheel msg.prizes
             } else if (player.state === 'SCANNED_PEN') {
-              //show pen
+              player.prize = msg.prize;
               api.scores.push(player);
+              //TODO: aftertimeout or interaction?
+              //player.state = 'WON';
             }
+          } else {
+             //TODO:timeoutreset player
+             //but cancel timer if new scan
           }
           api.wheel.player = player;
           break;
@@ -155,6 +172,8 @@ angular.module('gestionairFrontendApp')
           api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
           $timeout(function(){
+              //TODO:aftertimeout or interaction?
+              //player.state = 'WON';
             api.scores.push(player);
           }, msg.wheel_duration);
 

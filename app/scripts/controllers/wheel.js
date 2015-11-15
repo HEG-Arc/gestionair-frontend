@@ -13,15 +13,19 @@ angular.module('gestionairFrontendApp')
     $scope.win = 1;
 
     //TODO states
-    // slideshow
-    // wheel read to start
-    // won prize
-    //messages display
-      // error already playes
-      // ...
     //local sounds
 
     this.wheel = api.wheel;
+    api.isSlideshowVisible = true;
+
+    $scope.$watch('wheel.wheel.player', function(){
+      if( wheel.wheel.player ) {
+        api.isSlideshowVisible = false;
+
+      } else {
+        api.isSlideshowVisible = true;
+      }
+    });
 
     this.testWheelItemChange = function (){
       wheel.wheel.prizes.push({'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360});
@@ -35,6 +39,20 @@ angular.module('gestionairFrontendApp')
 
     $scope.$on('$destroy', function() {
       api.unregisterWheel(wheel.wheel);
+      api.isSlideshowVisible = false;
     });
+
+    /* test */
+    /*
+    wheel.wheel.player = {
+      name: 'Julien',
+      score: 123,
+      state: 'SCANNED_WHEEL', //WON, PLAYING, SCANNED_PEN, SCANNED_WHEEL
+      prize: {
+        name: 'un stylo',
+        src: 'images/prizes/stylo.png'
+      }
+    };
+    */
 
   });

@@ -1,25 +1,31 @@
-<div>WON
- //already prize
-</div>
-<div>PLAYING
-	go play
-</div>
-<div>
-	SCANNED_PEN
-</div>
-
-Wheel for {{wheel.wheel.player}}
 <div layout-align="center center" layout="column" flex>
-	<wheel control="wheel.wheel"></wheel>
-	<div>
-		<h3>debug</h3>
-		{{wheel.wheel.isSpinning()}}
+	<div ng-show="wheel.wheel.player.state == 'PLAYING'">
+		<h2>{{wheel.wheel.player.name}} vous n'avez pas encore<br/>répondu à suffisament d'appels!</h2>
+	</div>
+	<div ng-show="wheel.wheel.player.state == 'WON'">
+		<h2>{{wheel.wheel.player.name}} vous avez déjà joué!</h2>
+	</div>
+	<div ng-show="wheel.wheel.player.state == 'SCANNED_PEN'">
+		<h2>{{wheel.wheel.player.name}} avec vos {{wheel.wheel.player.score}} points.<br>
+		Vous avez gagnez {{wheel.wheel.player.prize.name}}:</h2>
+		<p style="text-align:center;"><img ng-src="{{wheel.wheel.player.prize.src}}" /></p>
+	</div>
+	<div ng-show="wheel.wheel.player.state == 'SCANNED_WHEEL'" layout="column">
+	<h2>{{wheel.wheel.player.name}} avec vos {{wheel.wheel.player.score}} points.<br>
+		Vous pouvez tourner la roue:</h2>
 
-		<input type="number" ng-model="win">
-		<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
+	<div style="text-align: center;">
+		<wheel control="wheel.wheel"></wheel>
+		<h2 ng-show="wheel.wheel.won" class="won fadein">Bravo vous avez gagnez:<br/>
+		{{wheel.wheel.won.name}}!</h2>
+	</div>
+		<div>
+			<h3>debug</h3>
+			{{wheel.wheel.isSpinning()}}
 
-		{{wheel.wheel.won}}
-
-		<md-button ng-click="wheel.testWheelItemChange()">test wheel change</md-button>
+			<input type="number" ng-model="win">
+			<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
+			<md-button ng-click="wheel.testWheelItemChange()">test wheel change</md-button>
+		</div>
 	</div>
 </div>

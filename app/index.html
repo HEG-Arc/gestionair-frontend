@@ -15,12 +15,15 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="gestionairFrontendApp" layout="row" flex ng-controller="MainCtrl as main" ng-keypress="main.handleKeyPress($event)">
+  <body ng-app="gestionairFrontendApp" layout="column" flex ng-controller="MainCtrl as main" ng-keypress="main.handleKeyPress($event)">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div layout="row" layout-fill ng-show="main.api.isSlideshowVisible">
+      <slideshow images="main.api.config.slideshow" duration="main.api.config.slideshow_timer"></slideshow>
+    </div>
     <md-content flex layout="column">
       <md-button id="menu-button" ng-click="main.toggleLeftMenu()" class="md-icon-button md-primary" ng-if="main.mode=='dashboard'">
         <md-icon md-svg-icon="images/ic_settings_black_48px.svg"></md-icon>
@@ -90,6 +93,7 @@
     <script src="scripts/directives/wheel.js"></script>
     <script src="scripts/services/sim.js"></script>
     <script src="scripts/directives/code.js"></script>
+    <script src="scripts/directives/slideshow.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -83,6 +83,10 @@ angular.module('gestionairFrontendApp')
                   playerId: p.id,
                   state: 'SCANNED_PEN',
                   score: p.score,
+                  prize: {
+                    name: 'Stylo',
+                    src: ''
+                  },
                   languages: p.languages,
                   timestamp: new Date()
                 });
@@ -141,11 +145,11 @@ angular.module('gestionairFrontendApp')
         var player = new Player(1000 + step);
         api.handleEvent({
           type: 'PLAYER_CREATED',
-          player: player
+          player: angular.copy(player)
         });
         step++;
         sim.players.push(player);
-      }, 3000);
+      }, 500);
     };
 
     this.randomName = function () {

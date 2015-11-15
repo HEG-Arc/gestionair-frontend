@@ -91,18 +91,18 @@ angular.module('gestionairFrontendApp')
 
         scope.internalControl.spin = function (options) {
           var targetIndex = options.prize || 0;
-          var duration = options.duration || 1000;
-          if(!spinning){ // TODO? what hapens to event?
+          var duration = options.duration || 3000;
+          if(!spinning){ // TODO? what happens to event?
             scope.internalControl.won = undefined;
             spinning = true;
             var stopAngle = Math.floor(scope.internalControl.prizes[targetIndex].startAngle + (Math.random() * (scope.internalControl.prizes[targetIndex].endAngle - scope.internalControl.prizes[targetIndex].startAngle)));
             stopAngle = 360 - stopAngle + scope.internalControl.pointerAngle;
-            //TODO randInt should come from server as param to this function to be synched across screens
-            var randInt = Math.floor( Math.random() * 3) + 1;
-            stopAngle = stopAngle + randInt * 360;
+
+            var nbTurns = Math.max(1, Math.floor(duration - 1000) / 500);
+            stopAngle = stopAngle + nbTurns * 360;
 
             gWheel.transform('r0, 400, 400');
-            gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration + randInt * 500, mina.easein, function(){
+            gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration, mina.easein, function(){
               scope.$apply(function(){
                 spinning = false;
                 scope.internalControl.won = scope.internalControl.prizes[targetIndex];

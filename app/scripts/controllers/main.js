@@ -8,9 +8,10 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('MainCtrl', function ($mdSidenav, $cookies, $location) {
+  .controller('MainCtrl', function ($mdSidenav, $cookies, $location, api) {
 
     var main = this;
+    main.api = api;
 
     this.setMode = function (mode) {
       $cookies.put('mode', mode);

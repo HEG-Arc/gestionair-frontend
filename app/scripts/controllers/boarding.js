@@ -8,10 +8,10 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('BoardingCtrl', function ($timeout) {
+  .controller('BoardingCtrl', function ($timeout, api) {
     var boarding = this;
     boarding.state = 'INIT';
-    //$0.contentDocument.getElementsByClassName('st11')[0].textContent=123
+
     this.board = function () {
       boarding.state = 'GUIDE1';
       //contact server
@@ -22,9 +22,7 @@ angular.module('gestionairFrontendApp')
     var timer;
     this.print = function () {
       boarding.state = 'PRINT';
-      // timeout
-      //TODO config on server
-      timer = $timeout(boarding.reset, 10000);
+      timer = $timeout(boarding.reset, api.config.boarding_reset);
     };
 
     this.reset = function () {

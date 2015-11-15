@@ -49,5 +49,5 @@ angular
       });
   })
   .run(function(api){
-    api.startSim();
+    //api.startSim();
   });
