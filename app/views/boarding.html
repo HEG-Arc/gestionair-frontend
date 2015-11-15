@@ -27,8 +27,8 @@
 	</md-card>
 	</form>
 </div>
-<div ng-show="boarding.state == 'GUIDE1'" flex ng-click="boarding.state = 'GUIDE2'" class="guide">
-	<div layout="row" class="header" flex>
+<div ng-show="boarding.state == 'GUIDE1'" flex layout="column" ng-click="boarding.state = 'GUIDE2'" class="guide">
+	<div layout="row" class="header">
 		<h2>Prêt(e) à participer ?<br/>
 		Voici comment faire...</h2>
 		<span flex></span>
@@ -36,20 +36,20 @@
 		<div class="indicator">2</div>
 	</div>
 	<div layout="row" layout-align="center center">
-		<div flex="20">
-			<object data="images/step01_step_ticket.svg" type="image/svg+xml"></object>
-		</div>
-		<div flex></div>
-		<div flex="20">
-			<object data="images/step02_phone_ringing.svg" type="image/svg+xml"></object>
+		<div flex="20" layout="column">
+			<iframe flex src="images/step01_step_ticket.svg" code="boarding.player.id"></iframe>
 		</div>
 		<div flex></div>
 		<div flex="20" layout="column">
-			<object data="images/step03_ticket.svg" type="image/svg+xml"></object>
+			<iframe flex src="images/step02_phone_ringing.svg"></iframe>
 		</div>
 		<div flex></div>
-		<div flex="20">
-			<object data="images/step04_dial.svg" type="image/svg+xml"></object>
+		<div flex="20" layout="column">
+			<iframe flex src="images/step03_ticket.svg" code="boarding.player.id"></iframe>
+		</div>
+		<div flex></div>
+		<div flex="20" layout="column">
+			<iframe flex src="images/step04_dial.svg"></iframe>
 		</div>
 	</div>
 	<div layout="row" layout-align="begin center">
@@ -76,19 +76,19 @@
 	</div>
 	<div layout="row" layout-align="center center">
 		<div flex="20">
-			<object data="images/step05_listen.svg" type="image/svg+xml"></object>
+			<img src="images/step05_listen.svg">
 		</div>
 		<div flex></div>
 		<div flex="20">
-			<object data="images/step06_answer.svg" type="image/svg+xml"></object>
+			<img src="images/step06_answer.svg">
 		</div>
 		<div flex></div>
 		<div flex="20" layout="column">
-			<object data="images/step07_hangup.svg" type="image/svg+xml"></object>
+			<img src="images/step07_hangup.svg">
 		</div>
 		<div flex></div>
 		<div flex="20">
-			<object data="images/step08_wait.svg" type="image/svg+xml"></object>
+			<img src="images/step08_wait.svg">
 		</div>
 	</div>
 	<div layout="row" layout-align="begin center">
@@ -111,10 +111,10 @@
 			<h2>Une fois votre mission accomplie, venez jouer à la roue de la fortune et remportez de nombreux prix !</h2>
 			<span flex></span>
 			<h3>N'oubliez pas votre ticket!</h3>
-			<p><md-button type="submit" class="md-primary" ng-click="boarding.reset()">Nouveau joueur</md-button></p>
+			<p><md-button class="md-primary" ng-click="boarding.reset()">Nouveau joueur</md-button></p>
 		</div>
 		<div flex="50">
-			<object data="images/wheel.svg" type="image/svg+xml"></object>
+			<img src="images/wheel.svg">
 		</div>
 	</div>
 </div>

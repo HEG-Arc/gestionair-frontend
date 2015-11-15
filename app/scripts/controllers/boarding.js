@@ -16,7 +16,7 @@ angular.module('gestionairFrontendApp')
       boarding.state = 'GUIDE1';
       //contact server
       //display info with number from server
-
+      boarding.player.id = Math.floor(Math.random() * 100) + 100;
     };
 
     var timer;
@@ -29,7 +29,7 @@ angular.module('gestionairFrontendApp')
 
     this.reset = function () {
       $timeout.cancel(timer);
-      boarding.player = '';
+      boarding.player = {};
       boarding.state = 'INIT';
     };
   });
