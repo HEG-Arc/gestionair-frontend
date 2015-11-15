@@ -1,6 +1,6 @@
 <div layout-padding>
-	<h1>Dashboard</h1>
-	<h2>Players</h2>
+	<h2>Dashboard</h2>
+	<h3>Players</h3>
 	<div layout="row" layout-align="center center">
 		<div layout="column" flex="80">
 			<div class="info" layout="row">
@@ -40,13 +40,13 @@
 		</div>
 	</div>
 
-	<h2>Phones</h2>
+	<h3>Phones</h3>
 	<ul>
 		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number">{{p.number}} {{p.state}} {{p.player.name}} : {{p.flag}} : {{p.correct}}</li>
 	</ul>
 
 
-	<h2>Debug</h2>
+	<h3>Debug</h3>
 	<div layout="row">
 		<md-input-container>
 			<input placeholder="id">
