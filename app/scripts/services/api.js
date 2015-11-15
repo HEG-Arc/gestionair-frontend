@@ -82,6 +82,12 @@ angular.module('gestionairFrontendApp')
       return phone;
     };
 
+    api.getStats = function () {
+      $http.get(URL + '/???').then(function(result){
+        //TODO api.players <- result.data
+      });
+    };
+
     api.createPlayer = function (player) {
       return $http.post(URL + '/???', player);
     };
