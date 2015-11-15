@@ -8,9 +8,10 @@
  * Service in the gestionairFrontendApp.
  */
 angular.module('gestionairFrontendApp')
-  .service('api', function ( $timeout, sim ) {
+  .service('api', function ( $http, $timeout, sim ) {
 
     var api = this;
+    var URL = 'http:///'
 
     //inital dashboard data inital scores
     //post register, print, scan, bumper
@@ -80,6 +81,24 @@ angular.module('gestionairFrontendApp')
       }
       return phone;
     };
+
+    api.createPlayer = function (player) {
+      return $http.post(URL + '/???', player);
+    };
+
+    api.printPlayerId = function (id) {
+      return $http.post(URL + '/???', {id: id});
+    };
+
+    api.sendScan = function ( code) {
+      return $http.post(URL + '/???', {code: code});
+    };
+
+    api.sendBumper = function () {
+      return $http.post(URL + '/???');
+    };
+
+    //TODO connect to events URL
 
     api.handleEvent = function ( msg ) {
       var player, phone;

@@ -13,15 +13,21 @@ angular.module('gestionairFrontendApp')
     boarding.state = 'INIT';
 
     this.board = function () {
-      boarding.state = 'GUIDE1';
-      //contact server
-      //display info with number from server
-      boarding.player.id = Math.floor(Math.random() * 100) + 100;
+      api.createPlayer(boarding.player).then(function( result ) {
+        boarding.state = 'GUIDE1';
+        boarding.player.id = result.id;
+        boarding.player.code = result.code;
+      }, function(){
+        boarding.state = 'FORM';
+        //TODO: display error;
+      })
     };
 
     var timer;
     this.print = function () {
       boarding.state = 'PRINT';
+      api.printPlayerId(boarding.player.id);
+      //TODO add configurable ding?
       timer = $timeout(boarding.reset, api.config.boarding_reset);
     };
 

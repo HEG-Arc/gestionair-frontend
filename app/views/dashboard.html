@@ -49,9 +49,9 @@
 	<h3>Debug</h3>
 	<div layout="row">
 		<md-input-container>
-			<input placeholder="id">
+			<input placeholder="scanCode" ng-model="scanCode">
 		</md-input-container>
-		<md-button class="md-raised md-primary">SCAN</md-button>
-		<md-button class="md-raised md-warn">BUMPER</md-button>
+		<md-button class="md-raised md-primary" ng-click="dashboard.api.sendScan( scanCode )">SCAN</md-button>
+		<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()">BUMPER</md-button>
 	</div>
 </div>
