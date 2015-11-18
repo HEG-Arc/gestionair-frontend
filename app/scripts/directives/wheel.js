@@ -37,8 +37,8 @@ angular.module('gestionairFrontendApp')
         var s = new Snap('#wheel');
         s.circle(c, c, r).attr({
           fill: '#fff',
-          stroke: 'black',
-          'stroke-width': '5px'
+          stroke: '#00405E',
+          'stroke-width': '8px'
         });
         var gWheel = s.g();
 
@@ -86,7 +86,21 @@ angular.module('gestionairFrontendApp')
         scope.$watch('internalControl.prizes', drawPrizes, true);
 
         //anchor TODO: SKIN
-        s.polyline(360, 0,  440, 0, 400, 50);
+        s.polygon(360, 5,  400, 5, 400, 70)
+        .attr({
+          fill: '#0090D4'
+        });
+        s.polygon(400, 5,  440, 5, 400, 70)
+        .attr({
+
+          fill: '#006FA2'
+        });
+        s.polygon(360, 5,  440, 5, 400, 70)
+        .attr({
+          fill: 'none',
+          stroke: '#00405E',
+          'stroke-width': '8px'
+        });
 
 
         scope.internalControl.getPrizeIndex = function (id) {

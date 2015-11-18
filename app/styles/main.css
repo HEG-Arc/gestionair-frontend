@@ -190,7 +190,6 @@ h2 {
   background-image: url('../images/background.png');
 }
 
-
 #linus {
   background-image: url('../images/linus.png');
   background-repeat: no-repeat;
@@ -237,8 +236,8 @@ h2 {
     position: absolute;
     top: 30%;
     background-color: rgb(3, 149, 216);
+    box-shadow: 0 0 110px 0 rgba(0, 0, 0, 0.75);
     padding: 1em;
-    border: 5px solid rgb(0, 143, 209);
     left: 0;
     margin-left: 15%;
     margin-right: 15%;
