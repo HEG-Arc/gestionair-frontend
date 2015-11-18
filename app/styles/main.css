@@ -18,7 +18,7 @@ md-content {
 }
 
 h2 {
-  color: #fff;
+  color: #008FD1;
   font-size: 4vw;
   margin: 0;
 }
@@ -96,11 +96,11 @@ h2 {
   font-size: 38px;
 }
 
-.row.ng-enter {
+#scoreboard .row.ng-enter {
     animation: show 4s;
 }
 
-.row.ng-leave {
+#scoreboard .row.ng-leave {
     animation: hide 1s;
 }
 

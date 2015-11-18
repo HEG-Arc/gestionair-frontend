@@ -162,6 +162,8 @@ angular.module('gestionairFrontendApp')
           player = api.players[msg.playerId];
           player.limit_time = msg.timestamp;
           player.state = 'LIMIT_REACHED';
+          player.languages = msg.languages;
+          api.scores.push(player);
           break;
 
         case 'PLAYER_SCANNED':
@@ -172,12 +174,10 @@ angular.module('gestionairFrontendApp')
           if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {
             player.scan_time = msg.timestamp;
             player.score = msg.score;
-            player.languages = msg.languages;
             if (player.state === 'SCANNED_WHEEL'){
               //show wheel msg.prizes
             } else if (player.state === 'SCANNED_PEN') {
               player.prize = msg.prize;
-              api.scores.push(player);
               //TODO: aftertimeout or interaction?
               //player.state = 'WON';
             }
@@ -199,7 +199,6 @@ angular.module('gestionairFrontendApp')
           $timeout(function(){
               //TODO:aftertimeout or interaction?
               //player.state = 'WON';
-            api.scores.push(player);
           }, msg.wheel_duration);
 
           break;

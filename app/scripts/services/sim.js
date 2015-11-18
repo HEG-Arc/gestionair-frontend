@@ -37,6 +37,8 @@ angular.module('gestionairFrontendApp')
               api.handleEvent({
                 type: 'PLAYER_LIMIT_REACHED',
                 playerId: p.id,
+                languages: p.languages,
+                score: p.score,
                 timestamp: new Date()
               });
               p.state = 'LIMIT_REACHED';
@@ -88,7 +90,6 @@ angular.module('gestionairFrontendApp')
                     name: 'Stylo',
                     src: ''
                   },
-                  languages: p.languages,
                   timestamp: new Date()
                 });
                 //save
@@ -100,7 +101,6 @@ angular.module('gestionairFrontendApp')
                   playerId: p.id,
                   state: 'SCANNED_WHEEL',
                   score: p.score,
-                  languages: p.languages,
                   prizes: [], //TODO
                   timestamp: new Date()
                 });

@@ -1,6 +1,6 @@
 
 <div ng-show="boarding.state == 'INIT'" id="init" flex ng-click="boarding.state = 'FORM'"></div>
-<div ng-show="boarding.state == 'FORM'" layout="row" flex layout-align="center center" class="blue-background">
+<div ng-show="boarding.state == 'FORM'" layout="row" flex layout-align="center center">
 	<form ng-submit="boarding.board()" name="boardingForm">
 	<md-card>
 		<md-card-content>
@@ -15,10 +15,6 @@
 			<md-input-container>
 				<label>Email</label>
 				<input type="email" ng-model="boarding.player.email">
-			</md-input-container>
-			<md-input-container>
-				<label>NPA</label>
-				<input type="text" ng-model="boarding.player.npa">
 			</md-input-container>
 		</md-card-content>
 		<md-card-actions layout="row" layout-align="end center">
