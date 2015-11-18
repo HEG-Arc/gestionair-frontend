@@ -101,7 +101,15 @@ angular.module('gestionairFrontendApp')
                   playerId: p.id,
                   state: 'SCANNED_WHEEL',
                   score: p.score,
-                  prizes: [], //TODO
+                  prizes: [
+        {id: 1, src: '', 'name' : 'un bloc-note', 'startAngle' : 0,   'endAngle' : 44},
+        {id: 2, src: '', 'name' : 'un porte-clefs', 'startAngle' : 45,  'endAngle' : 89},
+        {id: 3, src: '', 'name' : 'une sacoche', 'startAngle' : 90,  'endAngle' : 134},
+        {id: 4, src: '', 'name' : 'un linge de bain', 'startAngle' : 135, 'endAngle' : 179},
+        {id: 5, src: '', 'name' : 'un parapluie', 'startAngle' : 180, 'endAngle' : 224},
+        {id: 6, src: '', 'name' : 'un jeux de cartes', 'startAngle' : 225, 'endAngle' : 269},
+        {id: 7, src: '', 'name' : 'des bonbons', 'startAngle' : 270, 'endAngle' : 360},
+        {id: 8, src: '', 'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}],
                   timestamp: new Date()
                 });
                 p.state = 'SCANNED_WHEEL';
@@ -111,7 +119,7 @@ angular.module('gestionairFrontendApp')
               api.handleEvent({
                 type: 'WHEEL_START',
                 playerId: p.id,
-                prize: 1, //index of prize?
+                prize: 1, //id of prize?
                 wheel_duration: 2000,
                 timestamp: new Date()
               });

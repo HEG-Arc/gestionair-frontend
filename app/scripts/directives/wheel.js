@@ -85,14 +85,24 @@ angular.module('gestionairFrontendApp')
 
         scope.$watch('internalControl.prizes', drawPrizes, true);
 
-        //anchor
+        //anchor TODO: SKIN
         s.polyline(360, 0,  440, 0, 400, 50);
 
 
+        scope.internalControl.getPrizeIndex = function (id) {
+          for( var i=0; i < scope.internalControl.prizes.length; i++) {
+            if (scope.internalControl.prizes[i].id === id) {
+              return i;
+            }
+          }
+        };
+
+
+
         scope.internalControl.spin = function (options) {
-          var targetIndex = options.prize || 0;
+          var targetIndex = scope.internalControl.getPrizeIndex( options.prize );
           var duration = options.duration || 3000;
-          if(!spinning){ // TODO? what happens to event?
+          if(!spinning && typeof  targetIndex !== 'undefined') { // TODO? what happens to event?
             scope.internalControl.won = undefined;
             spinning = true;
             var stopAngle = Math.floor(scope.internalControl.prizes[targetIndex].startAngle + (Math.random() * (scope.internalControl.prizes[targetIndex].endAngle - scope.internalControl.prizes[targetIndex].startAngle)));

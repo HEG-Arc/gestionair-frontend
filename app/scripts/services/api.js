@@ -36,16 +36,7 @@ angular.module('gestionairFrontendApp')
     api.phones = {}; //number : {state: 'offline', player, flag}
     api.wheel = {
       player: undefined,
-      prizes: [
-        {'name' : 'un bloc-note', 'startAngle' : 0,   'endAngle' : 44},
-        {'name' : 'un porte-clefs', 'startAngle' : 45,  'endAngle' : 89},
-        {'name' : 'une sacoche', 'startAngle' : 90,  'endAngle' : 134},
-        {'name' : 'un linge de bain', 'startAngle' : 135, 'endAngle' : 179},
-        {'name' : 'un parapluie', 'startAngle' : 180, 'endAngle' : 224},
-        {'name' : 'un jeux de cartes', 'startAngle' : 225, 'endAngle' : 269},
-        {'name' : 'des bonbons', 'startAngle' : 270, 'endAngle' : 360},
-        //{'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}
-      ]
+      prizes: []
     };
     var wheels = [];
 
@@ -176,6 +167,7 @@ angular.module('gestionairFrontendApp')
             player.score = msg.score;
             if (player.state === 'SCANNED_WHEEL'){
               //show wheel msg.prizes
+              api.wheel.prizes = msg.prizes;
             } else if (player.state === 'SCANNED_PEN') {
               player.prize = msg.prize;
               //TODO: aftertimeout or interaction?
