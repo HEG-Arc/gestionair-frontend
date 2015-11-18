@@ -1,27 +1,29 @@
 <div layout-padding>
 	<h2>Dashboard</h2>
-	<h3>Players</h3>
-	<div layout="row" layout-align="center center">
-		<div layout="column" flex="80">
-			<div class="info" layout="row">
-				<div flex ng-click="dashboard.detailState = 'CREATED'">
-					{{dashboard.stats.CREATED}}
-					<span>CREATED</span></div>
-				<div flex ng-click="dashboard.detailState = 'PRINTED'">
-					{{dashboard.stats.PRINTED}}
-					<span>PRINTED</span></div>
-				<div flex ng-click="dashboard.detailState = 'PLAYING'">
-					{{dashboard.stats.PLAYING}}
-					<span>PLAYING</span></div>
-				<div flex ng-click="dashboard.detailState = 'LIMIT_REACHED'">
-					{{dashboard.stats.LIMIT_REACHED}}
-					<span>LIMIT_REACHED</span></div>
-				<div flex ng-click="dashboard.detailState = 'WON'">
-					{{dashboard.stats.WON}}
-					<span>WON</span></div>
+	<md-card>
+		<md-card-content>
+			<h3>Players</h3>
+			<div layout="row" layout-align="center center">
+				<div layout="column" flex="80">
+					<div class="info" layout="row">
+						<div flex ng-click="dashboard.detailState = 'CREATED'">
+							{{dashboard.stats.CREATED}}
+							<span>CREATED</span></div>
+						<div flex ng-click="dashboard.detailState = 'PRINTED'">
+							{{dashboard.stats.PRINTED}}
+							<span>PRINTED</span></div>
+						<div flex ng-click="dashboard.detailState = 'PLAYING'">
+							{{dashboard.stats.PLAYING}}
+							<span>PLAYING</span></div>
+						<div flex ng-click="dashboard.detailState = 'LIMIT_REACHED'">
+							{{dashboard.stats.LIMIT_REACHED}}
+							<span>LIMIT_REACHED</span></div>
+						<div flex ng-click="dashboard.detailState = 'WON'">
+							{{dashboard.stats.WON}}
+							<span>WON</span></div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 	<h4>Details</h4>
 	<div layout="row"  layout-align="center center">
 		<div layout="column" flex="80" class="table">
@@ -54,4 +56,6 @@
 		<md-button class="md-raised md-primary" ng-click="dashboard.api.sendScan( scanCode )">SCAN</md-button>
 		<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()">BUMPER</md-button>
 	</div>
+		</md-card-content>
+	</md-card>
 </div>

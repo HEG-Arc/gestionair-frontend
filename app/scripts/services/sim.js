@@ -8,10 +8,9 @@
  * Service in the gestionairFrontendApp.
  */
 angular.module('gestionairFrontendApp')
-  .service('sim', function ($interval, $timeout) {
+  .service('sim', function ($timeout) {
 
     var sim = this;
-    var interval;
 
     var Player = function Player( id ) {
       var p = this;
@@ -21,6 +20,7 @@ angular.module('gestionairFrontendApp')
       this.npa = sim.randomNpa();
       this.state = 'CREATED';
       this.attempts = 0;
+      this.languages = [];
       this.score = 0;
       this.start_time = new Date();
 
@@ -33,7 +33,7 @@ angular.module('gestionairFrontendApp')
             });
             p.state = 'PRINTED';
           } else if (p.state === 'PRINTED' || p.state === 'PLAYING') {
-            if (p.attempts > 5) {
+            if (p.attempts > 6) {
               api.handleEvent({
                 type: 'PLAYER_LIMIT_REACHED',
                 playerId: p.id,
@@ -42,16 +42,17 @@ angular.module('gestionairFrontendApp')
               p.state = 'LIMIT_REACHED';
             } else {
               var number = Math.floor(Math.random() * 10 ) + 1000;
+              var correct = Math.round(Math.random());
+              var flag = ['fr', 'de', 'en', 'ru'][Math.floor(Math.random() * 4)];
               api.handleEvent({
                 type: 'PLAYER_ANSWERING',
                 playerId: p.id,
                 number: number,
                 timestamp: new Date(),
-                flag: 'fr'
+                flag: flag
               });
               //Timeout response < steptime
               $timeout(function(){
-                var correct = Math.round(Math.random());
                 p.score += correct;
                 api.handleEvent({
                   type: 'PLAYER_ANSWERED',
@@ -61,6 +62,7 @@ angular.module('gestionairFrontendApp')
                 });
               }, 1000);
               p.attempts++;
+              p.languages.push({code: flag, correct: correct});
               p.state = 'PLAYING';
             }
 
@@ -76,7 +78,6 @@ angular.module('gestionairFrontendApp')
               });
             } else{
               if (p.score < 2) {
-                p.languages = 'FR';
                 // pen
                 api.handleEvent({
                   type: 'PLAYER_SCANNED',
@@ -94,7 +95,6 @@ angular.module('gestionairFrontendApp')
                 p.state = 'WON';
               } else {
                 //show wheel
-                p.languages = 'EN, FR';
                 api.handleEvent({
                   type: 'PLAYER_SCANNED',
                   playerId: p.id,
@@ -135,7 +135,8 @@ angular.module('gestionairFrontendApp')
     this.players = [];
     this.run = function ( api ) {
       var step = 0;
-      interval = $interval(function(){
+      var speed = 500;
+      var loop = function(){
         sim.players.forEach(function(p){
           if( Math.random() > 0.5 ) {
             p.step(api);
@@ -149,7 +150,13 @@ angular.module('gestionairFrontendApp')
         });
         step++;
         sim.players.push(player);
-      }, 500);
+        if(step > 30) {
+            speed = 10000;
+        }
+        $timeout(loop, speed);
+      };
+      loop();
+
     };
 
     this.randomName = function () {

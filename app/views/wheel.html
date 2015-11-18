@@ -1,4 +1,4 @@
-<div layout-align="center center" layout="column" flex>
+<div layout-align="center center" layout="column" flex class="wheel" ng-class="{'wheel-background': wheel.wheel.player.state == 'SCANNED_WHEEL'}">
 	<div ng-show="wheel.wheel.player.state == 'PLAYING'">
 		<h2>{{wheel.wheel.player.name}} vous n'avez pas encore<br/>répondu à suffisament d'appels!</h2>
 	</div>

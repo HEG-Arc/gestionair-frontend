@@ -42,7 +42,7 @@ angular.module('gestionairFrontendApp')
         });
         var gWheel = s.g();
 
-        var colorArr = ['#FFED00','#FFA000','#B3CE00','#009BA3','#00C7E2','#9A527C', '#FF007F'];
+        var colorArr = ['#FFF22D','#E49F30','#BBD147','#85C7DF','#15A8AB','#7C587E','#CA0088','#CC2229'];
         var drawPrizes = function () {
           var x1, y1, x2, y2;
           gWheel.clear();
@@ -57,7 +57,7 @@ angular.module('gestionairFrontendApp')
               var d = 'M' + c + ',' + c + ' L' + x1 + ',' + y1 + ' A' + r +',' + r + ' 0 0,1 ' + x2 + ',' + y2 + ' z'; //1 means clockwise
               gWheel.path(d)
               .attr({
-                stroke: colorArr[i % 7],
+                stroke: colorArr[i % 8],
                 'stroke-width': '8px',
                 fill: 'none'
               });

@@ -8,11 +8,17 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('BoardingCtrl', function ($timeout, api) {
+  .controller('BoardingCtrl', function ($timeout, api, $location) {
     var boarding = this;
     boarding.state = 'INIT';
 
     this.board = function () {
+      if($location.search().test){
+        boarding.state = 'GUIDE1';
+        boarding.player.id = 345;
+        boarding.player.code = '345';
+        return;
+      }
       api.createPlayer(boarding.player).then(function( result ) {
         boarding.state = 'GUIDE1';
         boarding.player.id = result.id;
@@ -20,7 +26,7 @@ angular.module('gestionairFrontendApp')
       }, function(){
         boarding.state = 'FORM';
         //TODO: display error;
-      })
+      });
     };
 
     var timer;

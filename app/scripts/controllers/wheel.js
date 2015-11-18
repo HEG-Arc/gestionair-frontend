@@ -43,7 +43,7 @@ angular.module('gestionairFrontendApp')
     });
 
     /* test */
-    /*
+
     wheel.wheel.player = {
       name: 'Julien',
       score: 123,
@@ -53,6 +53,6 @@ angular.module('gestionairFrontendApp')
         src: 'images/prizes/stylo.png'
       }
     };
-    */
+
 
   });

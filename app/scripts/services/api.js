@@ -11,7 +11,7 @@ angular.module('gestionairFrontendApp')
   .service('api', function ( $http, $timeout, sim ) {
 
     var api = this;
-    var URL = 'http:///'
+    var URL = 'http://server';
 
     //inital dashboard data inital scores
     //post register, print, scan, bumper

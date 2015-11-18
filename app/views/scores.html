@@ -1,16 +1,20 @@
-<div layout="row"  layout-align="center center">
-	<div layout="column" flex="80" class="table">
+<div layout="row"  layout-align="center center" id="scoreboard">
+	<div flex></div>
+	<div layout="column" flex="70" class="table">
 		<div class="header" layout="row">
-			<div flex="5">#</div>
 			<div flex="15">Scores</div>
-			<div flex="50">Nom</div>
-			<div flex="30">Langues</div>
+			<div flex="30">Nom</div>
+			<div flex="55">Langues</div>
 		</div>
-		<div class="row" ng-repeat="p in scores.api.scores | orderBy: ['-score', '-scan_time'] track by p.id" layout="row">
-			<div flex="5">{{$index + 1}}</div>
+		<div class="row" ng-repeat="p in scores.api.scores | orderBy: ['-limit_time'] track by p.id" layout="row">
 			<div flex="15" class="text-right">{{p.score * 100}}</div>
-			<div flex="50">{{p.name}}</div>
-			<div flex="30">{{p.languages}}</div>
+			<div flex="30">{{p.name}}</div>
+			<div flex="55">
+				<span ng-repeat="answer in p.languages" class="flag">
+					<span ng-class="{'correct': answer.correct, 'wrong': answer.correct==0, 'unknown': answer.correct==null}"></span>
+					<img ng-src="images/flags/{{answer.code}}.png">
+				</span>
+			</div>
 		</div>
 	</div>
 </div>

@@ -7,10 +7,18 @@
 
 body {
   padding: 0;
+  background-image: url('../images/background_light.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+md-content {
+  background: none;
 }
 
 h2 {
-  color: #008FD1;
+  color: #fff;
   font-size: 4vw;
   margin: 0;
 }
@@ -78,6 +86,16 @@ h2 {
   background-color: #f5f5f5;
 }
 
+#scoreboard .header {
+  color: #fff;
+  font-size: 38px;
+}
+#scoreboard .row {
+  height: 70px;
+  line-height: 70px;
+  font-size: 38px;
+}
+
 .row.ng-enter {
     animation: show 4s;
 }
@@ -85,6 +103,7 @@ h2 {
 .row.ng-leave {
     animation: hide 1s;
 }
+
 
 @keyframes show {
   0% {
@@ -106,17 +125,17 @@ h2 {
   }
 
   100% {
-    height: 24px;
-    font-size: 100%;
-    line-height: 18px;
+    height: 70px;
+    font-size: 38px;
+    line-height: 70px;
   }
 }
 
 @keyframes hide {
   0% {
-    height: 24px;
+    height: 70px;
     font-size: 100%;
-    line-height: 18px;
+    line-height: 70px;
   }
   100% {
     height: 0;
@@ -153,6 +172,39 @@ h2 {
   background-image: url('../images/boarding_intro.png');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+
+.wheel {
+  background-image: url('../images/background_light.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+.wheel h2 {
+  color: #fff;
+}
+
+.wheel-background {
+  background-image: url('../images/background.png');
+}
+
+
+#linus {
+  background-image: url('../images/linus.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 682px;
+  height: 1006px;
+  bottom: 0;
+  left: 0;
+}
+
+#linus.small{
+  width: 545px;
+  height: 804px;
 }
 
 .slideshow .fade{
@@ -192,4 +244,44 @@ h2 {
     margin-right: 15%;
     color: #fff;
     width: 60%;
+}
+
+.flag{
+    padding: 0 10px;
+    height: 70px;
+    position: relative;
+    display: inline-block;
+}
+
+.flag img{
+    height: 60px;
+}
+
+.flag .wrong, .flag .correct, .flag .unknown{
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 20px;
+    right: 5px;
+    z-index: 101;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+.flag .wrong{
+    background-color: #dc1616;
+    background-image:  url('../images/delete102.png');
+}
+
+.flag .correct{
+    background-color: #338800;
+    background-image:  url('../images/checked21.png');
+
+}
+
+.flag .unknown{
+    background-color: #ccc;
+    background-image:  url('../images/Question_mark_512.png');
+
 }
