@@ -13,10 +13,6 @@ angular.module('gestionairFrontendApp')
     var api = this;
     var URL = 'http://server';
 
-    //inital dashboard data inital scores
-    //post register, print, scan, bumper
-    //post agi simulate phones
-
     api.isConnected = false;
 
     var serverConnection = function () {
@@ -54,6 +50,13 @@ angular.module('gestionairFrontendApp')
 
         stompConnect();
     };
+
+    //connect to server
+    serverConnection();
+
+    //TODO: inital dashboard data inital scores
+    //post register, print, scan, bumper
+    //post agi simulate phones
 
 
     //TODO get from server
