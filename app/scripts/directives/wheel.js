@@ -35,6 +35,7 @@ angular.module('gestionairFrontendApp')
         element[0].setAttribute('width', c * 2);
         element[0].setAttribute('height', c * 2);
         var s = new Snap('#wheel');
+        s.attr({viewBox: '0 0 ' + c * 2 + ' ' + c * 2});
         s.circle(c, c, r).attr({
           fill: '#fff',
           stroke: '#00405E',
