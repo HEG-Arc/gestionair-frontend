@@ -32,6 +32,8 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-material/angular-material.js',
       'bower_components/Snap.svg/dist/snap.svg-min.js',
+      'bower_components/stomp-websocket/lib/stomp.min.js',
+      'bower_components/sockjs-client/dist/sockjs.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

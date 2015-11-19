@@ -17,7 +17,46 @@ angular.module('gestionairFrontendApp')
     //post register, print, scan, bumper
     //post agi simulate phones
 
-    //get from server
+    api.isConnected = false;
+
+    var serverConnection = function () {
+        var client;
+
+        var onConnect =  function () {
+            api.isConnected = true;
+            client.subscribe('/exchange/gestionair/simulation', function ( message ) {
+                try {
+                    api.handleEvent(JSON.parse(message.body));
+                } catch (e) {
+                    console.log('error', e);
+                    console.log(message.body);
+                }
+            });
+        };
+
+        var stompConnect = function () {
+            var ws = new SockJS(URL + ':15674/stomp');
+            client = Stomp.over(ws);
+
+            //disable unsupported heart-beat
+            client.heartbeat.outgoing = 0;
+            client.heartbeat.incoming = 0;
+            client.debug = function ( m ) {
+              //console.log( m );
+            };
+            client.connect('guest', 'guest', onConnect, failureConnect, '/');
+        }
+
+        var failureConnect = function () {
+            api.isConnected = false;
+            $timeout(stompConnect, 10000);
+        };
+
+        stompConnect();
+    };
+
+
+    //TODO get from server
     api.config = {
       boarding_reset: 10000,
       slideshow_timer: 3000,
