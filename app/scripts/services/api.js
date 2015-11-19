@@ -67,7 +67,55 @@ angular.module('gestionairFrontendApp')
         'images/slideshow/ARC1.jpg',
         'images/slideshow/ARC2.jpg',
         'images/slideshow/ARC3.jpg'
-      ]
+      ],
+      menu: 'Menu',
+      boarding: 'Boarding',
+      wheel: 'Wheel',
+      scores: 'Scores',
+      dashboard: 'Dashboard',
+      mode: 'Mode',
+      logout: 'Logout',
+      login: 'Connexion',
+      username: "Nom d'utilistateur",
+      password: 'Mot de passe',
+      connection_error: 'connection error, retrying...',
+      signup: 'Inscription',
+      languages: 'Langues',
+      name: 'Nom',
+      name_required: 'Ce champ est requis!',
+      email: 'Email',
+      showZipCode: 'false',
+      zip_code: 'Npa',
+      play: 'Jouer',
+      ready_to_start: 'Prêt(e) à participer ?',
+      how_to: 'Voici comment faire...',
+      signup_take_ticket: 'Inscrivez-vous et prenez votre ticket',
+      take_phone: 'Lorsqu’un téléphone sonne, décrochez-le',
+      input_code: 'Saisissez sur le téléphone le numéro indiqué sur votre ticket pour vous identifier',
+      listen: 'Écoutez la demande et cherchez la bonne solution !',
+      answer: 'Déviez l’appel vers le bon département',
+      repeat: 'Raccrochez le téléphone et attendez qu’un téléphone sonne à nouveau pour répondre à la prochaine question',
+      goto_wheel: 'Une fois votre mission accomplie, venez jouer à la roue de la fortune et remportez de nombreux prix !',
+      warn_ticket: "N'oubliez pas votre ticket!",
+      new_player: 'Nouveau joueur',
+      msg_playing: /* Name */  "vous n'avez pas encore répondu à suffisament d'appels!",
+      msg_already_won: /* Name */ 'vous avez déjà joué!',
+      msg_won_pen: 'Vous avez gagné', /* price name */
+      msg_won_wheel: 'Bravo vous avez gagné', /* price name */
+      msg_with_your: /* Name */ 'avec vos', /* score */
+      msg_points: 'points',
+      msg_turn_wheel: 'Vous pouvez tourner la roue:',
+      players: 'Joueurs',
+      details: 'Détails',
+      phones: 'Phones',
+      debug: 'Debug',
+      bumper: 'Bouton',
+      scan: 'Scan',
+      created: 'CREATED',
+      printed: 'PRINTED',
+      playing: 'PLAYING',
+      limit_reached: 'LIMIT_REACHED',
+      won: 'WON'
     };
 
     api.isSlideshowVisible = false;
@@ -202,6 +250,8 @@ angular.module('gestionairFrontendApp')
         case 'PLAYER_SCANNED':
           //error done, pen, wheel or play more (option to get pen?)
           //TODO maybe queue system?
+          //TODO error player not found
+          //TOOD if playerId == -1 -> kids mode
           player = api.players[msg.playerId];
           player.state = msg.state;
           if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {

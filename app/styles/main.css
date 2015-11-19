@@ -29,6 +29,10 @@ h2 {
   margin: 0;
 }
 
+md-content h2{
+  color: #0098d8;
+}
+
 #connect_error {
   color: #fff;
   background-color: red;

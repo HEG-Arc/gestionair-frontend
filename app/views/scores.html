@@ -2,9 +2,9 @@
 	<div flex></div>
 	<div layout="column" flex="70" class="table">
 		<div class="header" layout="row">
-			<div flex="15">Scores</div>
-			<div flex="30">Nom</div>
-			<div flex="55">Langues</div>
+			<div flex="15" ng-bind="main.api.config.scores">Scores</div>
+			<div flex="30" ng-bind="main.api.config.name">Nom</div>
+			<div flex="55" ng-bind="main.api.config.languages">Langues</div>
 		</div>
 		<div class="row" ng-repeat="p in scores.api.scores | orderBy: ['-limit_time'] track by p.id" layout="row">
 			<div flex="15" class="text-right">{{p.score * 100}}</div>

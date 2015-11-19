@@ -4,29 +4,33 @@
 	<form ng-submit="boarding.board()" name="boardingForm">
 	<md-card>
 		<md-card-content>
-			<h2 class="md-title">Inscription</h2>
+			<h2 class="md-title" ng-bind="main.api.config.signup">Sign Up</h2>
 			<md-input-container>
-				<label>Nom</label>
+				<label ng-bind="main.api.config.name">Name</label>
 				<input name="name" ng-model="boarding.player.name" required>
 				<div ng-messages="boardingForm.name.$error">
-					<div ng-message="required">Ce champ est requis!</div>
+					<div ng-message="required" >{{main.api.config.name_required}}</div>
 				</div>
 			</md-input-container>
 			<md-input-container>
-				<label>Email</label>
+				<label ng-bind="main.api.config.email">Email</label>
 				<input type="email" ng-model="boarding.player.email">
+			</md-input-container>
+			<md-input-container ng-if="main.api.config.showZipCode !== 'false'">
+				<label ng-bind="main.api.config.zip_code">Zip Code</label>
+				<input type="text" ng-model="boarding.player.npa">
 			</md-input-container>
 		</md-card-content>
 		<md-card-actions layout="row" layout-align="end center">
-			<md-button type="submit" class="md-primary">Jouer</md-button>
+			<md-button type="submit" class="md-primary" ng-bind="main.api.config.play">Play</md-button>
 		</md-card-actions>
 	</md-card>
 	</form>
 </div>
 <div ng-show="boarding.state == 'GUIDE1'" flex layout="column" ng-click="boarding.state = 'GUIDE2'" class="guide">
 	<div layout="row" class="header">
-		<h2>Prêt(e) à participer ?<br/>
-		Voici comment faire...</h2>
+		<h2>{{main.api.config.ready_to_start}}<br/>
+		{{main.api.config.how_to}}</h2>
 		<span flex></span>
 		<div class="indicator active">1</div>
 		<div class="indicator">2</div>
@@ -50,22 +54,22 @@
 	</div>
 	<div layout="row" layout-align="begin center">
 		<div flex="20">
-			<p>Inscrivez-vous et prenez votre ticket</p>
+			<p ng-bind="main.api.config.signup_take_ticket"></p>
 		</div>
 		<div flex></div>
 		<div flex="20">
-			<p>Lorsqu’un téléphone sonne, décrochez-le</p>
+			<p nb-bind="main.api.config.take_phone"></p>
 		</div>
 		<div flex></div>
 		<div flex="40" layout="column">
-			<p>Saisissez sur le téléphone le numéro indiqué sur votre ticket pour vous identifier</p>
+			<p ng-bind="main.api.config.input_code"></p>
 		</div>
 	</div>
 </div>
 <div ng-show="boarding.state == 'GUIDE2'" flex ng-click="boarding.print()" class="guide">
 	<div layout="row" class="header" flex>
-		<h2>Prêt(e) à participer ?<br/>
-		Voici comment faire...</h2>
+		<h2>{{main.api.config.ready_to_start}}<br/>
+		{{main.api.config.how_to}}</h2>
 		<span flex></span>
 		<div class="indicator">1</div>
 		<div class="indicator active">2</div>
@@ -89,25 +93,25 @@
 	</div>
 	<div layout="row" layout-align="begin center">
 		<div flex="20">
-			<p>Écoutez la demande et cherchez la bonne solution !</p>
+			<p nb-bind="main.api.config.listen"></p>
 		</div>
 		<div flex></div>
 		<div flex="20">
-			<p>Déviez l’appel vers le bon département</p>
+			<p nb-bind="main.api.config.answer"></p>
 		</div>
 		<div flex></div>
 		<div flex="40" layout="column">
-			<p>Raccrochez le téléphone et attendez qu’un téléphone sonne à nouveau pour répondre à la prochaine question</p>
+			<p nb-bind="main.api.config.repeat"></p>
 		</div>
 	</div>
 </div>
 <div ng-show="boarding.state == 'PRINT'" class="guide-end">
 	<div layout="row">
 		<div flex="50" layout="column">
-			<h2>Une fois votre mission accomplie, venez jouer à la roue de la fortune et remportez de nombreux prix !</h2>
+			<h2 nb-bind="main.api.config.repeat"></h2>
 			<span flex></span>
-			<h3>N'oubliez pas votre ticket!</h3>
-			<p><md-button class="md-primary" ng-click="boarding.reset()">Nouveau joueur</md-button></p>
+			<h3 nb-bind="main.api.config.warn_ticket"></h3>
+			<p><md-button class="md-primary" ng-click="boarding.reset()" nb-bind="main.api.config.new_player"></md-button></p>
 		</div>
 		<div flex="50">
 			<img src="images/wheel.svg">
