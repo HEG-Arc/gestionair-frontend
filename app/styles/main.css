@@ -13,12 +13,18 @@ body {
   color: #fff;
 }
 
+#boarding-form {
+  background-image: url('../images/background_light_linus.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 md-content {
   background: none;
 }
 
 h2 {
-  color: #008FD1;
+  color: #0098d8;
   font-size: 4vw;
   margin: 0;
 }
@@ -47,7 +53,7 @@ h2 {
 }
 
 .indicator.active{
-  background-color: #008FD1;
+  background-color: #0098d8;
   color: #fff;
 }
 
@@ -153,7 +159,7 @@ h2 {
 }
 
 .info > div {
-  background-color: #349BFF;
+  background-color: #0098d8;
   color: white;
   font-size: 40px;
   text-align: center;
@@ -244,7 +250,7 @@ h2 {
 .won {
     position: absolute;
     top: 30%;
-    background-color: rgb(3, 149, 216);
+    background-color: #0098d8;
     box-shadow: 0 0 110px 0 rgba(0, 0, 0, 0.75);
     padding: 1em;
     left: 0;

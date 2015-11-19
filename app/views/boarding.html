@@ -1,6 +1,6 @@
 
 <div ng-show="boarding.state == 'INIT'" id="init" flex ng-click="boarding.state = 'FORM'"></div>
-<div ng-show="boarding.state == 'FORM'" layout="row" flex layout-align="center center">
+<div ng-show="boarding.state == 'FORM'" layout="row" flex layout-align="center center" id="boarding-form">
 	<form ng-submit="boarding.board()" name="boardingForm">
 	<md-card>
 		<md-card-content>
