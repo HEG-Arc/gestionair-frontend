@@ -8,7 +8,7 @@
 	By Douglas McKechie @ www.dougtesting.net
  */
 angular.module('gestionairFrontendApp')
-  .directive('wheel', function () {
+  .directive('wheel', function ($timeout) {
     return {
       template: '<svg id="wheel"></svg>',
       restrict: 'E',
@@ -120,16 +120,19 @@ angular.module('gestionairFrontendApp')
             scope.internalControl.won = undefined;
             spinning = true;
             var stopAngle = Math.floor(scope.internalControl.prizes[targetIndex].startAngle + (Math.random() * (scope.internalControl.prizes[targetIndex].endAngle - scope.internalControl.prizes[targetIndex].startAngle)));
-            stopAngle = 360 - stopAngle + scope.internalControl.pointerAngle;
+            stopAngle = 180 + stopAngle + scope.internalControl.pointerAngle;
 
             var nbTurns = Math.max(1, Math.floor(duration - 1000) / 500);
             stopAngle = stopAngle + nbTurns * 360;
+
 
             gWheel.transform('r0, 400, 400');
             gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration, mina.easein, function(){
               scope.$apply(function(){
                 spinning = false;
-                scope.internalControl.won = scope.internalControl.prizes[targetIndex];
+                $timeout(function(){
+                    scope.internalControl.won = scope.internalControl.prizes[targetIndex];
+                }, 1000);
               });
             });
           }

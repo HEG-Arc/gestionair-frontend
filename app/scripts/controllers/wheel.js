@@ -43,7 +43,8 @@ angular.module('gestionairFrontendApp')
 
     /* test */
     $scope.win = {
-      prize: 1
+      prize: 1,
+      duration: 11000
     };
     $timeout(function(){
     wheel.wheel.prizes = [
@@ -52,9 +53,9 @@ angular.module('gestionairFrontendApp')
         {id: 3, src: '/media/bag.png', 'name' : 'une sacoche', 'startAngle' : 90,  'endAngle' : 134},
         {id: 4, src: '/media/linge.png', 'name' : 'un linge de bain', 'startAngle' : 135, 'endAngle' : 179},
         {id: 5, src: '/media/umbrella.png', 'name' : 'un parapluie', 'startAngle' : 180, 'endAngle' : 224},
-        {id: 6, src: '/media/sunglasses.png', 'name' : 'un jeux de cartes', 'startAngle' : 225, 'endAngle' : 269},
-        {id: 7, src: '/media/mug.png', 'name' : 'des bonbons', 'startAngle' : 270, 'endAngle' : 314},
-        {id: 8, src: '/media/torch.png', 'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}];
+        {id: 6, src: '/media/sunglasses.png', 'name' : 'des lunettes', 'startAngle' : 225, 'endAngle' : 269},
+        {id: 7, src: '/media/mug.png', 'name' : 'une tasse', 'startAngle' : 270, 'endAngle' : 314},
+        {id: 8, src: '/media/torch.png', 'name' : 'une lampe', 'startAngle' : 315, 'endAngle' : 360}];
       if($location.search().test){
         wheel.debug = true;
         wheel.wheel.player = {
