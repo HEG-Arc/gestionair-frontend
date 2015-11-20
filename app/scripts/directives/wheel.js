@@ -65,8 +65,7 @@ angular.module('gestionairFrontendApp')
 
               var gi = gWheel.g();
               var middleAngle = item.startAngle + (( item.endAngle - item.startAngle ) / 2);
-              console.log(middleAngle);
-              gi.image(item.src, 0, 0, 50, 50).transform('T-25,-25R' + (180 - middleAngle) + ', 0, 0');
+              gi.image(scope.internalControl.URL + item.src, 0, 0, 150, 150).transform('T-75,-75R' + (180 - middleAngle) + ', 0, 0');
               gi.transform('t' + (c + Math.sin(Snap.rad(middleAngle)) * r * 0.7) + ',' + (c + Math.cos(Snap.rad(middleAngle)) * r * 0.7));
 
           });

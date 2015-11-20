@@ -143,7 +143,8 @@ angular.module('gestionairFrontendApp')
     api.phones = {}; //number : {state: 'offline', player, flag}
     api.wheel = {
       player: undefined,
-      prizes: []
+      prizes: [],
+      URL: URL
     };
     var wheels = [];
 

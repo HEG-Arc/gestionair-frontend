@@ -19,7 +19,7 @@
 		<h2 ng-show="wheel.wheel.won" class="won fadein">{{main.api.config.msg_won_wheel}}<br/>
 		{{wheel.wheel.won.name}}</h2>
 	</div>
-		<div>
+		<div ng-if="wheel.debug">
 			<h3>debug</h3>
 			{{wheel.wheel.isSpinning()}}
 

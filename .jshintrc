@@ -13,6 +13,8 @@
   "globals": {
     "angular": false,
     "Snap": false,
-    "mina": false
+    "mina": false,
+    "SockJS": false,
+    "Stomp": false
   }
 }
