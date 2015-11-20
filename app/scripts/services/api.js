@@ -40,7 +40,7 @@ angular.module('gestionairFrontendApp')
             client.heartbeat.outgoing = 0;
             client.heartbeat.incoming = 0;
             client.debug = function ( m ) {
-              console.log( m );
+              //console.log( m );
             };
             client.connect('guest', 'guest', onConnect, failureConnect, '/');
         };
