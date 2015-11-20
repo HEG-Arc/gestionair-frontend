@@ -76,7 +76,9 @@ angular
       .accentPalette('green', {
         'default': '600' // use shade 200 for default, and keep all other shades the same
       });
-  })
-  .run(function(api){
-    //api.startSim();
   });
+  /*
+  .run(function(api){
+    api.startSim();
+  });
+  */

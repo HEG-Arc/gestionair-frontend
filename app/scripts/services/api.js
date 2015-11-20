@@ -195,12 +195,6 @@ angular.module('gestionairFrontendApp')
       return player;
     };
 
-    api.getStats = function () {
-      $http.get(URL + '/game/api/players-list').then(function(result){
-        //TODO api.players <- result.data
-      });
-    };
-
     api.createPlayer = function (player) {
       return $http.post(URL + '/game/api/register-player', player);
     };
