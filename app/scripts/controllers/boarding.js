@@ -21,8 +21,8 @@ angular.module('gestionairFrontendApp')
       }
       api.createPlayer(boarding.player).then(function( result ) {
         boarding.state = 'GUIDE1';
-        boarding.player.id = result.id;
-        boarding.player.code = result.code;
+        boarding.player.id = result.data.id;
+        boarding.player.code = result.data.code;
       }, function(){
         boarding.state = 'FORM';
         //TODO: display error;
@@ -39,7 +39,12 @@ angular.module('gestionairFrontendApp')
 
     this.reset = function () {
       $timeout.cancel(timer);
-      boarding.player = {};
+      boarding.player = {
+        name: '',
+        email: '',
+        npa: ''
+      };
       boarding.state = 'INIT';
     };
+    this.reset(); //populate default player model
   });

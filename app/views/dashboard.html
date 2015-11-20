@@ -54,6 +54,12 @@
 			<input placeholder="scanCode" ng-model="scanCode">
 		</md-input-container>
 		<md-button class="md-raised md-primary" ng-click="dashboard.api.sendScan( scanCode )"  ng-bind="main.api.config.scan">SCAN</md-button>
+		<md-input-container>
+			<input placeholder="number" ng-model="phoneNumber">
+		</md-input-container>
+		<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
+		<md-button class="md-raised md-primary" ng-click="dashboard.api.startGame()">START</md-button>
+		<md-button class="md-raised md-primary" ng-click="dashboard.api.stopGame()">STOP</md-button>
 		<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
 	</div>
 		</md-card-content>

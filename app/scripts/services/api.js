@@ -8,10 +8,10 @@
  * Service in the gestionairFrontendApp.
  */
 angular.module('gestionairFrontendApp')
-  .service('api', function ( $http, $timeout, sim ) {
+  .service('api', function ( $rootScope, $http, $timeout, sim ) {
 
     var api = this;
-    var URL = 'http://server';
+    var URL = 'http://157.26.91.80';
 
     api.isConnected = false;
 
@@ -21,12 +21,14 @@ angular.module('gestionairFrontendApp')
         var onConnect =  function () {
             api.isConnected = true;
             client.subscribe('/exchange/gestionair/simulation', function ( message ) {
-                try {
-                    api.handleEvent(JSON.parse(message.body));
-                } catch (e) {
-                    console.log('error', e);
-                    console.log(message.body);
-                }
+                $rootScope.$apply(function(){
+                  try {
+                      api.handleEvent(JSON.parse(message.body));
+                  } catch (e) {
+                      console.log('error', e);
+                      console.log(message.body);
+                  }
+                });
             });
         };
 
@@ -38,10 +40,10 @@ angular.module('gestionairFrontendApp')
             client.heartbeat.outgoing = 0;
             client.heartbeat.incoming = 0;
             client.debug = function ( m ) {
-              //console.log( m );
+              console.log( m );
             };
             client.connect('guest', 'guest', onConnect, failureConnect, '/');
-        }
+        };
 
         var failureConnect = function () {
             api.isConnected = false;
@@ -54,12 +56,8 @@ angular.module('gestionairFrontendApp')
     //connect to server
     serverConnection();
 
-    //TODO: inital dashboard data inital scores
-    //post register, print, scan, bumper
-    //post agi simulate phones
+    //TODO: post agi simulate phones
 
-
-    //TODO get from server
     api.config = {
       boarding_reset: 10000,
       slideshow_timer: 3000,
@@ -118,11 +116,30 @@ angular.module('gestionairFrontendApp')
       won: 'WON'
     };
 
+    // Get config from server and replace local config
+    $http.get(URL + '/game/api/load-config')
+    .then(function( result ){
+           angular.extend(api.config, result.data);
+    });
+
     api.isSlideshowVisible = false;
 
     //states
     api.players = {}; //id : { name:, state:, score}
     api.scores = [];
+
+    //get scores from server
+     $http.get(URL + '/game/api/players-list')
+    .then(function( result ){
+         api.players = result.data;
+         Object.keys(api.players).forEach(function(key){
+           var player = api.players[key];
+            if( player.state === 'LIMIT_REACHED') {
+              api.scores.push(player);
+            }
+         });
+    });
+
     api.phones = {}; //number : {state: 'offline', player, flag}
     api.wheel = {
       player: undefined,
@@ -178,33 +195,43 @@ angular.module('gestionairFrontendApp')
     };
 
     api.getStats = function () {
-      $http.get(URL + '/???').then(function(result){
+      $http.get(URL + '/game/api/players-list').then(function(result){
         //TODO api.players <- result.data
       });
     };
 
     api.createPlayer = function (player) {
-      return $http.post(URL + '/???', player);
+      return $http.post(URL + '/game/api/register-player', player);
     };
 
     api.printPlayerId = function (id) {
-      return $http.post(URL + '/???', {id: id});
+      return $http.get(URL + '/game/api/print-player/' + id);
     };
 
-    api.sendScan = function ( code) {
-      return $http.post(URL + '/???', {code: code});
+    api.sendScan = function (code) {
+      return $http.get(URL + '/game/api/scan-code/' + code);
     };
 
     api.sendBumper = function () {
-      return $http.post(URL + '/???');
+      return $http.get(URL + '/game/api/bumper');
     };
 
-    //TODO connect to events URL
+    api.startGame = function () {
+      return $http.get(URL + '/game/start');
+    };
+
+    api.stopGame = function () {
+      return $http.get(URL + '/game/stop');
+    };
+
+    api.call = function ( number ) {
+      return $http.get(URL + '/game/api/call/' + number);
+    };
 
     api.handleEvent = function ( msg ) {
       var player, phone;
       switch (msg.type) {
-        case 'PLAYER_CREATED':
+        case 's':
           /*
           player = {
             id,
@@ -319,5 +346,6 @@ angular.module('gestionairFrontendApp')
           phone.state = 'ONLINE';
           break;
       }
+
     };
   });

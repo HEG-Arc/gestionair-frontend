@@ -24,7 +24,7 @@ angular.module('gestionairFrontendApp')
       } else {
         api.isSlideshowVisible = true;
       }
-    });
+    }, true);
 
     this.testWheelItemChange = function (){
       wheel.wheel.prizes.push({'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360});
@@ -57,6 +57,7 @@ angular.module('gestionairFrontendApp')
         {id: 8, src: '', 'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}];
     });
 
+/*
     wheel.wheel.player = {
       name: 'Julien',
       score: 123,
@@ -66,6 +67,6 @@ angular.module('gestionairFrontendApp')
         src: 'images/prizes/stylo.png'
       }
     };
-
+*/
 
   });

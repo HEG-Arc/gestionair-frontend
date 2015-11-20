@@ -54,15 +54,15 @@
 	</div>
 	<div layout="row" layout-align="begin center">
 		<div flex="20">
-			<p ng-bind="main.api.config.signup_take_ticket"></p>
+			<p>{{main.api.config.signup_take_ticket}}</p>
 		</div>
 		<div flex></div>
 		<div flex="20">
-			<p nb-bind="main.api.config.take_phone"></p>
+			<p>{{main.api.config.take_phone}}</p>
 		</div>
 		<div flex></div>
 		<div flex="40" layout="column">
-			<p ng-bind="main.api.config.input_code"></p>
+			<p>{{main.api.config.input_code}}</p>
 		</div>
 	</div>
 </div>
@@ -93,25 +93,25 @@
 	</div>
 	<div layout="row" layout-align="begin center">
 		<div flex="20">
-			<p nb-bind="main.api.config.listen"></p>
+			<p>{{main.api.config.listen}}</p>
 		</div>
 		<div flex></div>
 		<div flex="20">
-			<p nb-bind="main.api.config.answer"></p>
+			<p>{{main.api.config.answer}}</p>
 		</div>
 		<div flex></div>
 		<div flex="40" layout="column">
-			<p nb-bind="main.api.config.repeat"></p>
+			<p>{{main.api.config.repeat}}</p>
 		</div>
 	</div>
 </div>
 <div ng-show="boarding.state == 'PRINT'" class="guide-end">
 	<div layout="row">
 		<div flex="50" layout="column">
-			<h2 nb-bind="main.api.config.repeat"></h2>
+			<h2>{{main.api.config.goto_wheel}}</h2>
 			<span flex></span>
-			<h3 nb-bind="main.api.config.warn_ticket"></h3>
-			<p><md-button class="md-primary" ng-click="boarding.reset()" nb-bind="main.api.config.new_player"></md-button></p>
+			<h3>{{main.api.config.warn_ticket}}</h3>
+			<p><md-button class="md-primary" ng-click="boarding.reset()">{{main.api.config.new_player}}</md-button></p>
 		</div>
 		<div flex="50">
 			<img src="images/wheel.svg">

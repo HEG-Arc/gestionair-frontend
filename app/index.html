@@ -21,7 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div layout="row" layout-fill ng-show="main.api.isSlideshowVisible">
+    <div layout="row" layout-fill ng-if="main.api.isSlideshowVisible">
       <slideshow images="main.api.config.slideshow" duration="main.api.config.slideshow_timer"></slideshow>
     </div>
     <md-content flex layout="column">
