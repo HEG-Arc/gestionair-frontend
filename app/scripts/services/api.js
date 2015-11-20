@@ -163,6 +163,20 @@ angular.module('gestionairFrontendApp')
       return phone;
     };
 
+    api.getPlayer = function ( id ) {
+      var player = api.players[id];
+      if (!player) {
+        player = {
+          id: id,
+          name: '?'
+        };
+        if ( id > -1 ) {
+          api.players[id] = player;
+        }
+      }
+      return player;
+    };
+
     api.getStats = function () {
       $http.get(URL + '/???').then(function(result){
         //TODO api.players <- result.data
@@ -211,13 +225,13 @@ angular.module('gestionairFrontendApp')
           api.players[msg.player.id] = msg.player;
           break;
         case 'PLAYER_PRINTED':
-          player = api.players[msg.playerId];
+          player = api.getPlayer(msg.playerId);
           player.print_time = msg.timestamp;
           player.state = 'PRINTED';
           break;
 
         case 'PLAYER_ANSWERING':
-          player = api.players[msg.playerId];
+          player = api.getPlayer(msg.playerId);
           player.state = 'PLAYING';
           player.lastplay_time = msg.timestamp;
           player.attempts++;
@@ -228,7 +242,7 @@ angular.module('gestionairFrontendApp')
           break;
 
         case 'PLAYER_ANSWERED':
-          player = api.players[msg.playerId];
+          player = api.getPlayer(msg.playerId);
           phone = api.getPhone(msg.number);
           phone.correct = msg.correct;
           $timeout(function(){
@@ -240,7 +254,7 @@ angular.module('gestionairFrontendApp')
           break;
 
         case 'PLAYER_LIMIT_REACHED':
-          player = api.players[msg.playerId];
+          player = api.getPlayer(msg.playerId);
           player.limit_time = msg.timestamp;
           player.state = 'LIMIT_REACHED';
           player.languages = msg.languages;
@@ -250,9 +264,7 @@ angular.module('gestionairFrontendApp')
         case 'PLAYER_SCANNED':
           //error done, pen, wheel or play more (option to get pen?)
           //TODO maybe queue system?
-          //TODO error player not found
-          //TOOD if playerId == -1 -> kids mode
-          player = api.players[msg.playerId];
+          player = api.getPlayer(msg.playerId);
           player.state = msg.state;
           if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {
             player.scan_time = msg.timestamp;
@@ -273,7 +285,7 @@ angular.module('gestionairFrontendApp')
           break;
 
         case 'WHEEL_START': //== 'PLAYER_WON'
-          player = api.players[msg.playerId];
+          player = api.getPlayer(msg.playerId);
           player.wheel_time = msg.timestamp;
           player.prize = msg.prize;
 
