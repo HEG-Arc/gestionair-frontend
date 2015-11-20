@@ -47,14 +47,14 @@ angular.module('gestionairFrontendApp')
     };
     $timeout(function(){
     wheel.wheel.prizes = [
-        {id: 1, src: '/media/stylo_wdDndJL.png', 'name' : 'un bloc-note', 'startAngle' : 0,   'endAngle' : 44},
-        {id: 2, src: '/media/lampe.png', 'name' : 'un porte-clefs', 'startAngle' : 45,  'endAngle' : 89},
-        {id: 3, src: '/media/stylo_wdDndJL.png', 'name' : 'une sacoche', 'startAngle' : 90,  'endAngle' : 134},
-        {id: 4, src: '/media/stylo_wdDndJL.png', 'name' : 'un linge de bain', 'startAngle' : 135, 'endAngle' : 179},
-        {id: 5, src: '/media/stylo_wdDndJL.png', 'name' : 'un parapluie', 'startAngle' : 180, 'endAngle' : 224},
-        {id: 6, src: '/media/stylo_wdDndJL.png', 'name' : 'un jeux de cartes', 'startAngle' : 225, 'endAngle' : 269},
-        {id: 7, src: '/media/stylo_wdDndJL.png', 'name' : 'des bonbons', 'startAngle' : 270, 'endAngle' : 314},
-        {id: 8, src: '/media/stylo_wdDndJL.png', 'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}];
+        {id: 1, src: '/media/penbook.png', 'name' : 'un bloc-note', 'startAngle' : 0,   'endAngle' : 44},
+        {id: 2, src: '/media/keycgain.png', 'name' : 'un porte-clefs', 'startAngle' : 45,  'endAngle' : 89},
+        {id: 3, src: '/media/bag.png', 'name' : 'une sacoche', 'startAngle' : 90,  'endAngle' : 134},
+        {id: 4, src: '/media/linge.png', 'name' : 'un linge de bain', 'startAngle' : 135, 'endAngle' : 179},
+        {id: 5, src: '/media/umbrella.png', 'name' : 'un parapluie', 'startAngle' : 180, 'endAngle' : 224},
+        {id: 6, src: '/media/sunglasses.png', 'name' : 'un jeux de cartes', 'startAngle' : 225, 'endAngle' : 269},
+        {id: 7, src: '/media/mug.png', 'name' : 'des bonbons', 'startAngle' : 270, 'endAngle' : 314},
+        {id: 8, src: '/media/torch.png', 'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360}];
       if($location.search().test){
         wheel.debug = true;
         wheel.wheel.player = {
