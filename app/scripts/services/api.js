@@ -291,6 +291,7 @@ angular.module('gestionairFrontendApp')
         case 'PLAYER_LIMIT_REACHED':
           player = api.getPlayer(msg.playerId);
           player.limit_time = msg.timestamp;
+          player.score = msg.score;
           player.state = 'LIMIT_REACHED';
           player.languages = msg.languages;
           api.scores.push(player);

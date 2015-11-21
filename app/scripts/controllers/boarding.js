@@ -23,6 +23,7 @@ angular.module('gestionairFrontendApp')
         timer = $timeout(boarding.reset, api.config.boarding_reset);
         boarding.state = 'GUIDE1';
         boarding.player.id = result.data.id;
+        api.printPlayerId(boarding.player.id);
         boarding.player.code = result.data.code;
       }, function(){
         boarding.state = 'FORM';
@@ -33,7 +34,6 @@ angular.module('gestionairFrontendApp')
     var timer;
     this.print = function () {
       boarding.state = 'PRINT';
-      api.printPlayerId(boarding.player.id);
       //TODO add configurable ding?
       timer = $timeout(boarding.reset, api.config.boarding_reset);
     };
