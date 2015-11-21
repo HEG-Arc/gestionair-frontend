@@ -338,11 +338,9 @@ angular.module('gestionairFrontendApp')
 
           api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
-          $timeout(function(){
-               wheel_timeout_timer = $timeout(function(){
+          wheel_timeout_timer = $timeout(function(){
                 player.state = 'WON';
                 api.wheel.player = undefined;
-              }, api.config.timeout_wheel);
           }, msg.wheel_duration + 1000 + api.config.timeout_wheel);
 
           break;
