@@ -111,6 +111,10 @@ angular.module('gestionairFrontendApp')
           }
         };
 
+        var easeOutQuart  = function (n) {
+          return -1 * ( Math.pow( n - 1, 4 ) - 1 );
+        };
+
 
 
         scope.internalControl.spin = function (options) {
@@ -127,7 +131,7 @@ angular.module('gestionairFrontendApp')
 
 
             gWheel.transform('r0, 400, 400');
-            gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration, mina.easein, function(){
+            gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration, easeOutQuart, function(){
               scope.$apply(function(){
                 spinning = false;
                 $timeout(function(){
