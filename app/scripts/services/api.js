@@ -64,7 +64,7 @@ angular.module('gestionairFrontendApp')
     api.config = {
       boarding_reset: 240000,
       slideshow_timer: 3000,
-      timeout_wheel: 120000,
+      timeout_wheel: 60000,
       slideshow: [
         'images/slideshow/ARC1.jpg',
         'images/slideshow/ARC2.jpg',

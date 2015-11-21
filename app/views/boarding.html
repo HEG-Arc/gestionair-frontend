@@ -105,7 +105,7 @@
 			<p>{{main.api.config.repeat}}</p>
 		</div>
 	</div>
-	<md-button class="md-primary next-button md-raised" ng-click="boarding.print()">SUIVANT</md-button>
+	<md-button class="md-primary next-button md-raised" ng-click="boarding.print(); $event.stopPropagation();">SUIVANT</md-button>
 </div>
 <div ng-show="boarding.state == 'PRINT'" class="guide-end">
 	<div layout="row">
