@@ -20,6 +20,7 @@ angular.module('gestionairFrontendApp')
         return;
       }
       api.createPlayer(boarding.player).then(function( result ) {
+        timer = $timeout(boarding.reset, api.config.boarding_reset);
         boarding.state = 'GUIDE1';
         boarding.player.id = result.data.id;
         boarding.player.code = result.data.code;

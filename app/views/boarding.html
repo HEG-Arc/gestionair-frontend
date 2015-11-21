@@ -65,6 +65,7 @@
 			<p>{{main.api.config.input_code}}</p>
 		</div>
 	</div>
+	<md-button class="md-primary next-button md-raised" ng-click="boarding.state = 'GUIDE2'">SUIVANT</md-button>
 </div>
 <div ng-show="boarding.state == 'GUIDE2'" flex ng-click="boarding.print()" class="guide">
 	<div layout="row" class="header" flex>
@@ -104,6 +105,7 @@
 			<p>{{main.api.config.repeat}}</p>
 		</div>
 	</div>
+	<md-button class="md-primary next-button md-raised" ng-click="boarding.print()">SUIVANT</md-button>
 </div>
 <div ng-show="boarding.state == 'PRINT'" class="guide-end">
 	<div layout="row">
@@ -111,7 +113,7 @@
 			<h2>{{main.api.config.goto_wheel}}</h2>
 			<span flex></span>
 			<h3>{{main.api.config.warn_ticket}}</h3>
-			<p><md-button class="md-primary" ng-click="boarding.reset()">{{main.api.config.new_player}}</md-button></p>
+			<p><md-button class="md-primary md-raised" ng-click="boarding.reset()">{{main.api.config.new_player}}</md-button></p>
 		</div>
 		<div flex="50">
 			<img src="images/wheel.svg">

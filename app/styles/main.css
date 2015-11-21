@@ -47,6 +47,15 @@ md-content h2{
   background-color: #f5f5f5;
 }
 
+.next-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  line-height: 60px;
+  font-size: 50px;
+  padding: 5px;
+}
+
 #connect_error {
   color: #fff;
   background-color: red;

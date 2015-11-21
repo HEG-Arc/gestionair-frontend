@@ -62,9 +62,9 @@ angular.module('gestionairFrontendApp')
     //connect to server
     var server = serverConnection();
     api.config = {
-      boarding_reset: 10000,
+      boarding_reset: 240000,
       slideshow_timer: 3000,
-      timeout_wheel: 10000,
+      timeout_wheel: 120000,
       slideshow: [
         'images/slideshow/ARC1.jpg',
         'images/slideshow/ARC2.jpg',
@@ -301,6 +301,9 @@ angular.module('gestionairFrontendApp')
           //TODO maybe queue system?
           player = api.getPlayer(msg.playerId);
           player.state = msg.state;
+          if ( wheel_timeout_timer ) {
+                  $timeout.cancel(wheel_timeout_timer);
+          };
           if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {
             player.scan_time = msg.timestamp;
             api.wheel.won = undefined;
@@ -311,18 +314,12 @@ angular.module('gestionairFrontendApp')
             } else if (player.state === 'SCANNED_PEN') {
               player.prize = msg.prize;
 
-               if ( wheel_timeout_timer ) {
-                  $timeout.cancel(wheel_timeout_timer);
-               };
                wheel_timeout_timer = $timeout(function(){
                 player.state = 'WON';
                 api.wheel.player = undefined;
               }, api.config.timeout_wheel);
             }
           } else {
-               if ( wheel_timeout_timer ) {
-                  $timeout.cancel(wheel_timeout_timer);
-               };
              wheel_timeout_timer = $timeout(function(){
                 api.wheel.player = undefined;
               }, api.config.timeout_wheel);
@@ -334,13 +331,13 @@ angular.module('gestionairFrontendApp')
           player = api.getPlayer(msg.playerId);
           player.wheel_time = msg.timestamp;
           player.prize = msg.prize;
+           if ( wheel_timeout_timer ) {
+                  $timeout.cancel(wheel_timeout_timer);
+               };
 
           api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
           $timeout(function(){
-              if ( wheel_timeout_timer ) {
-                  $timeout.cancel(wheel_timeout_timer);
-               };
                wheel_timeout_timer = $timeout(function(){
                 player.state = 'WON';
                 api.wheel.player = undefined;
