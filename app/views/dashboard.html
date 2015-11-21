@@ -51,7 +51,7 @@
 		<h3 ng-bind="main.api.config.control">Control</h3>
 		<md-button class="md-raised md-primary" ng-click="dashboard.api.startGame()">START</md-button>
 		<md-button class="md-raised md-warn" ng-click="dashboard.api.stopGame()">STOP</md-button>
-		<md-button class="md-raised md-accent" ng-click="dashboard.api.sendRefresh()">REFRESH SCREEN</md-button>
+		<md-button class="md-raised md-accent" ng-click="dashboard.api.sendRefresh()">REFRESH SCREENS</md-button>
 	</div>
 
 	<div class="controls">
@@ -67,6 +67,14 @@
 			<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
 
 			<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
+			<md-checkbox ng-model="dashboard.api.debug">
+			Show events
+			</md-checkbox>
+		</div>
+		<div ng-if="dashboard.api.debug">
+			<div class="event-log" ng-repeat="m in dashboard.api.eventLogs" layout="row">
+				<div>{{dashboard.api.eventLogs.length - $index}}</div><pre>{{m}}</pre>
+			</div>
 		</div>
 	</div>
 		</md-card-content>

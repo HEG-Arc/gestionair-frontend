@@ -14,6 +14,7 @@ angular.module('gestionairFrontendApp')
     var URL = 'http://157.26.91.80';
 
     api.isConnected = false;
+    api.debug = false;
 
     var serverConnection = function () {
         var client;
@@ -32,6 +33,8 @@ angular.module('gestionairFrontendApp')
             });
         };
 
+        api.eventLogs = [];
+
         var stompConnect = function () {
             var ws = new SockJS(URL + ':15674/stomp');
             client = Stomp.over(ws);
@@ -40,7 +43,9 @@ angular.module('gestionairFrontendApp')
             client.heartbeat.outgoing = 0;
             client.heartbeat.incoming = 0;
             client.debug = function ( m ) {
-              console.log( m );
+              if (api.debug) {
+                api.eventLogs.unshift(m);
+              }
             };
             client.connect('guest', 'guest', onConnect, failureConnect, '/');
         };
