@@ -21,6 +21,7 @@ angular.module('gestionairFrontendApp')
       }
       api.createPlayer(boarding.player).then(function( result ) {
         timer = $timeout(boarding.reset, api.config.boarding_reset);
+        api.printPlayerId(boarding.player.id);
         boarding.state = 'GUIDE1';
         boarding.player.id = result.data.id;
         boarding.player.code = result.data.code;
@@ -33,7 +34,6 @@ angular.module('gestionairFrontendApp')
     var timer;
     this.print = function () {
       boarding.state = 'PRINT';
-      api.printPlayerId(boarding.player.id);
       //TODO add configurable ding?
       timer = $timeout(boarding.reset, api.config.boarding_reset);
     };
