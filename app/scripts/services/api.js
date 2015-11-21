@@ -134,7 +134,7 @@ angular.module('gestionairFrontendApp')
          api.players = result.data;
          Object.keys(api.players).forEach(function(key){
            var player = api.players[key];
-            if( player.state === 'LIMIT_REACHED') {
+            if( player.state === 'LIMIT_REACHED'|| player.state === 'SCANNED' || player.state === 'WON') {
               api.scores.push(player);
             }
          });
