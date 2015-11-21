@@ -7,7 +7,7 @@
 			<div flex="55" ng-bind="main.api.config.languages">Langues</div>
 		</div>
 		<div class="row" ng-repeat="p in scores.api.scores | orderBy: ['-limit_time'] track by p.id" layout="row">
-			<div flex="15" class="text-right">{{p.score * 100}}</div>
+			<div flex="15" class="text-right">{{p.score}}</div>
 			<div flex="30">{{p.name}}</div>
 			<div flex="55">
 				<span ng-repeat="answer in p.languages" class="flag">
