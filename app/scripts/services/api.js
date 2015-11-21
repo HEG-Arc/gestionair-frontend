@@ -61,12 +61,10 @@ angular.module('gestionairFrontendApp')
 
     //connect to server
     var server = serverConnection();
-
-    //TODO: post agi simulate phones
-
     api.config = {
       boarding_reset: 10000,
       slideshow_timer: 3000,
+      timeout_wheel: 10000,
       slideshow: [
         'images/slideshow/ARC1.jpg',
         'images/slideshow/ARC2.jpg',
@@ -236,6 +234,8 @@ angular.module('gestionairFrontendApp')
        }));
     };
 
+    var wheel_timeout_timer;
+
     api.handleEvent = function ( msg ) {
       var player, phone;
       switch (msg.type) {
@@ -310,12 +310,22 @@ angular.module('gestionairFrontendApp')
               api.wheel.prizes = msg.prizes;
             } else if (player.state === 'SCANNED_PEN') {
               player.prize = msg.prize;
-              //TODO: aftertimeout or interaction?
-              //player.state = 'WON';
+
+               if ( wheel_timeout_timer ) {
+                  $timeout.cancel(wheel_timeout_timer);
+               };
+               wheel_timeout_timer = $timeout(function(){
+                player.state = 'WON';
+                api.wheel.player = undefined;
+              }, api.config.timeout_wheel);
             }
           } else {
-             //TODO:timeoutreset player
-             //but cancel timer if new scan
+               if ( wheel_timeout_timer ) {
+                  $timeout.cancel(wheel_timeout_timer);
+               };
+             wheel_timeout_timer = $timeout(function(){
+                api.wheel.player = undefined;
+              }, api.config.timeout_wheel);
           }
           api.wheel.player = player;
           break;
@@ -325,13 +335,17 @@ angular.module('gestionairFrontendApp')
           player.wheel_time = msg.timestamp;
           player.prize = msg.prize;
 
-          //LOCAL event wheel start
           api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
           $timeout(function(){
-              //TODO:aftertimeout or interaction?
-              //player.state = 'WON';
-          }, msg.wheel_duration);
+              if ( wheel_timeout_timer ) {
+                  $timeout.cancel(wheel_timeout_timer);
+               };
+               wheel_timeout_timer = $timeout(function(){
+                player.state = 'WON';
+                api.wheel.player = undefined;
+              }, api.config.timeout_wheel);
+          }, msg.wheel_duration + 1000 + api.config.timeout_wheel);
 
           break;
 
