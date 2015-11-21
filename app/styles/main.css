@@ -33,6 +33,12 @@ md-content h2{
   color: #0098d8;
 }
 
+.controls button{
+  line-height: 72px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 #connect_error {
   color: #fff;
   background-color: red;

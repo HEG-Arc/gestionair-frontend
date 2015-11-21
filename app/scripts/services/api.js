@@ -8,7 +8,7 @@
  * Service in the gestionairFrontendApp.
  */
 angular.module('gestionairFrontendApp')
-  .service('api', function ( $rootScope, $http, $timeout, sim ) {
+  .service('api', function ( $rootScope, $http, $timeout, $window, sim ) {
 
     var api = this;
     var URL = 'http://157.26.91.80';
@@ -40,7 +40,7 @@ angular.module('gestionairFrontendApp')
             client.heartbeat.outgoing = 0;
             client.heartbeat.incoming = 0;
             client.debug = function ( m ) {
-              //console.log( m );
+              console.log( m );
             };
             client.connect('guest', 'guest', onConnect, failureConnect, '/');
         };
@@ -51,10 +51,11 @@ angular.module('gestionairFrontendApp')
         };
 
         stompConnect();
+        return client;
     };
 
     //connect to server
-    serverConnection();
+    var server = serverConnection();
 
     //TODO: post agi simulate phones
 
@@ -107,6 +108,7 @@ angular.module('gestionairFrontendApp')
       details: 'Détails',
       phones: 'Phones',
       debug: 'Debug',
+      control: 'Control',
       bumper: 'Bouton',
       scan: 'Scan',
       created: 'CREATED',
@@ -221,6 +223,12 @@ angular.module('gestionairFrontendApp')
 
     api.call = function ( number ) {
       return $http.get(URL + '/game/api/call/' + number);
+    };
+
+    api.sendRefresh = function () {
+       server.send('/exchange/gestionair/simulation', {}, angular.toJson({
+         type: 'FRONTEND_REFRESH'
+       }));
     };
 
     api.handleEvent = function ( msg ) {
@@ -339,6 +347,10 @@ angular.module('gestionairFrontendApp')
         case 'PHONE_ONLINE':
           phone = api.getPhone(msg.number);
           phone.state = 'ONLINE';
+          break;
+
+        case 'FRONTEND_REFRESH':
+          $window.location.reload(true);
           break;
       }
 

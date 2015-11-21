@@ -47,20 +47,27 @@
 		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number">{{p.number}} {{p.state}} {{p.player.name}} : {{p.flag}} : {{p.correct}}</li>
 	</ul>
 
-
-	<h3 ng-bind="main.api.config.debug">Debug</h3>
-	<div layout="row">
-		<md-input-container>
-			<input placeholder="scanCode" ng-model="scanCode">
-		</md-input-container>
-		<md-button class="md-raised md-primary" ng-click="dashboard.api.sendScan( scanCode )"  ng-bind="main.api.config.scan">SCAN</md-button>
-		<md-input-container>
-			<input placeholder="number" ng-model="phoneNumber">
-		</md-input-container>
-		<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
+	<div class="controls">
+		<h3 ng-bind="main.api.config.control">Control</h3>
 		<md-button class="md-raised md-primary" ng-click="dashboard.api.startGame()">START</md-button>
-		<md-button class="md-raised md-primary" ng-click="dashboard.api.stopGame()">STOP</md-button>
-		<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
+		<md-button class="md-raised md-warn" ng-click="dashboard.api.stopGame()">STOP</md-button>
+		<md-button class="md-raised md-accent" ng-click="dashboard.api.sendRefresh()">REFRESH SCREEN</md-button>
+	</div>
+
+	<div class="controls">
+		<h3 ng-bind="main.api.config.debug">Debug</h3>
+		<div layout="row">
+			<md-input-container>
+				<input placeholder="Player ID" ng-model="scanCode">
+			</md-input-container>
+			<md-button class="md-raised md-primary" ng-click="dashboard.api.sendScan( scanCode )"  ng-bind="main.api.config.scan">SCAN</md-button>
+			<md-input-container>
+				<input placeholder="Phone number" ng-model="phoneNumber">
+			</md-input-container>
+			<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
+
+			<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
+		</div>
 	</div>
 		</md-card-content>
 	</md-card>
