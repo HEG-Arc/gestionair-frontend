@@ -303,6 +303,7 @@ angular.module('gestionairFrontendApp')
           player.state = msg.state;
           if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {
             player.scan_time = msg.timestamp;
+            api.wheel.won = undefined;
             player.score = msg.score;
             if (player.state === 'SCANNED_WHEEL'){
               //show wheel msg.prizes
