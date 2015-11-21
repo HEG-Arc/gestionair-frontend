@@ -35,9 +35,9 @@
 			</div>
 			<div class="row" ng-repeat="p in dashboard.displayPlayers(dashboard.detailState) | orderBy: ['-id'] track by p.id" layout="row">
 				<div flex="5">{{$index + 1}}</div>
-				<div flex="15" class="text-right">{{p.score * 100}}</div>
+				<div flex="15" class="text-right">{{p.score}}</div>
 				<div flex="50">{{p.name}}</div>
-				<div flex="30"><span ng-repeat="l in p.languages">{{l.code}}:{{l.correct}}&nbsp;</span></div>
+				<div flex="30"><span ng-repeat="l in p.languages track by $index">{{l.lang}}:{{l.correct}}&nbsp;</span></div>
 			</div>
 		</div>
 	</div>

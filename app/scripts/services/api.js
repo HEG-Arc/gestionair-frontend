@@ -239,7 +239,7 @@ angular.module('gestionairFrontendApp')
     api.handleEvent = function ( msg ) {
       var player, phone;
       switch (msg.type) {
-        case 's':
+        case 'PLAYER_CREATED':
           /*
           player = {
             id,
