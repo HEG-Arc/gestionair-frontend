@@ -13,6 +13,11 @@ body {
   color: #fff;
 }
 
+.md-button.md-primary.md-raised.keyboard-focus:focus {
+  color: #0098d8;
+  background-color: #fff;
+}
+
 .background-linus {
   background-image: url('../images/background_light_linus.png');
   background-repeat: no-repeat;
