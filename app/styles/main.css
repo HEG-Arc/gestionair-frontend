@@ -139,6 +139,12 @@ md-content h2{
   color: #fff;
   font-size: 38px;
 }
+
+#scoreboard .table {
+  height: 100vh;
+  overflow: hidden;
+}
+
 #scoreboard .row {
   height: 70px;
   line-height: 70px;
