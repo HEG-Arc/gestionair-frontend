@@ -25,8 +25,8 @@
 
 			<input type="number" ng-model="win.prize">
 			<input type="number" ng-model="win.duration">
+			<input type="number" min="0" max="8" ng-model="win.prizeCountTest">
 			<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
-			<md-button ng-click="wheel.testWheelItemChange()">test wheel change</md-button>
 		</div>
 	</div>
 </div>

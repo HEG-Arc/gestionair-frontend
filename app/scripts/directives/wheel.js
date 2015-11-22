@@ -48,7 +48,7 @@ angular.module('gestionairFrontendApp')
           var x1, y1, x2, y2;
           gWheel.clear();
           scope.internalControl.prizes.forEach(function ( item, i ) {
-
+              //substract 90 to start on top and not to the right
               x1 = Math.round( c + r * Math.cos(Snap.rad(item.startAngle-90)));
               y1 = Math.round( c + r * Math.sin(Snap.rad(item.startAngle-90)));
 
@@ -65,8 +65,9 @@ angular.module('gestionairFrontendApp')
 
               var gi = gWheel.g();
               var middleAngle = item.startAngle + (( item.endAngle - item.startAngle ) / 2);
-              gi.image(scope.internalControl.URL + item.src, 0, 0, 150, 150).transform('T-75,-75R' + (180 - middleAngle) + ', 0, 0');
-              gi.transform('t' + (c + Math.sin(Snap.rad(middleAngle)) * r * 0.7) + ',' + (c + Math.cos(Snap.rad(middleAngle)) * r * 0.7));
+              gi.image(scope.internalControl.URL + item.src, 0, 0, 150, 150)
+              .transform('T-75,-75R' + (180 - middleAngle) + ', 0, 0');
+              gi.transform('t' + (c + Math.cos(Snap.rad(middleAngle-90)) * r * 0.7) + ',' + (c + Math.sin(Snap.rad(middleAngle-90)) * r * 0.7));
 
           });
           var centerC = gWheel.circle(c, c, 50);
@@ -85,22 +86,24 @@ angular.module('gestionairFrontendApp')
 
         scope.$watch('internalControl.prizes', drawPrizes, true);
 
-        //anchor TODO: SKIN
-        s.polygon(360, 5,  400, 5, 400, 70)
+        //anchor
+        var gAnchor = s.g();
+        gAnchor.polygon(360, 5,  400, 5, 400, 70)
         .attr({
           fill: '#0090D4'
         });
-        s.polygon(400, 5,  440, 5, 400, 70)
+        gAnchor.polygon(400, 5,  440, 5, 400, 70)
         .attr({
 
           fill: '#006FA2'
         });
-        s.polygon(360, 5,  440, 5, 400, 70)
+        gAnchor.polygon(360, 5,  440, 5, 400, 70)
         .attr({
           fill: 'none',
           stroke: '#00405E',
           'stroke-width': '8px'
         });
+        gAnchor.transform('r' + scope.internalControl.pointerAngle + ', ' + c + ', ' + c);
 
 
         scope.internalControl.getPrizeIndex = function (id) {
@@ -124,13 +127,13 @@ angular.module('gestionairFrontendApp')
             scope.internalControl.won = undefined;
             spinning = true;
             var stopAngle = Math.floor(scope.internalControl.prizes[targetIndex].startAngle + (Math.random() * (scope.internalControl.prizes[targetIndex].endAngle - scope.internalControl.prizes[targetIndex].startAngle)));
-            stopAngle = 180 + stopAngle + scope.internalControl.pointerAngle;
+            stopAngle =  360 - (stopAngle - scope.internalControl.pointerAngle);
 
             var nbTurns = Math.max(1, Math.floor(duration - 1000) / 500);
             stopAngle = stopAngle + nbTurns * 360;
 
-
-            gWheel.transform('r0, 400, 400');
+            //reset wheel rotation
+            gWheel.transform('r0, ' + c + ', ' + c);
             gWheel.animate({ transform: 'r' + stopAngle + ', 400, 400' }, duration, easeOutQuart, function(){
               scope.$apply(function(){
                 spinning = false;

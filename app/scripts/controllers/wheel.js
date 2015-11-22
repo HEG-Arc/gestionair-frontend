@@ -26,12 +26,6 @@ angular.module('gestionairFrontendApp')
       }
     }, true);
 
-    this.testWheelItemChange = function (){
-      wheel.wheel.prizes.push({'name' : 'un stylo', 'startAngle' : 315, 'endAngle' : 360});
-      wheel.wheel.prizes[6].endAngle = 314;
-      wheel.wheel.prizes[3].src = 'images/prizewheel.png';
-    };
-
     $timeout(function(){
       api.registerWheel(wheel.wheel);
     }, 1);
@@ -44,18 +38,36 @@ angular.module('gestionairFrontendApp')
     /* test */
     $scope.win = {
       prize: 1,
-      duration: 11000
+      duration: 1000,
+      prizeCountTest: 8
     };
+
+    var testPrizes = [
+        {id: 1, src: '/media/penbook.png', 'name' : 'un bloc-note'},
+        {id: 2, src: '/media/keycgain.png', 'name' : 'un porte-clefs'},
+        {id: 3, src: '/media/bag.png', 'name' : 'une sacoche'},
+        {id: 4, src: '/media/linge.png', 'name' : 'un linge de bain'},
+        {id: 5, src: '/media/umbrella.png', 'name' : 'un parapluie'},
+        {id: 6, src: '/media/sunglasses.png', 'name' : 'des lunettes'},
+        {id: 7, src: '/media/mug.png', 'name' : 'une tasse'},
+        {id: 8, src: '/media/torch.png', 'name' : 'une lampe'}];
+
+    function generatePrizesList( n ){
+        var prizes = [];
+        var angle = Math.floor(360 / n);
+        for(var i = 0; i < n; i++){
+          testPrizes[i].startAngle = i * angle;
+          testPrizes[i].endAngle = Math.min( i * angle + angle -1, 359);
+          if ( i + 1 === n) {
+            testPrizes[i].endAngle = 359;
+          }
+          prizes.push(testPrizes[i]);
+        }
+        return prizes;
+    }
+
+
     $timeout(function(){
-    wheel.wheel.prizes = [
-        {id: 1, src: '/media/penbook.png', 'name' : 'un bloc-note', 'startAngle' : 0,   'endAngle' : 44},
-        {id: 2, src: '/media/keycgain.png', 'name' : 'un porte-clefs', 'startAngle' : 45,  'endAngle' : 89},
-        {id: 3, src: '/media/bag.png', 'name' : 'une sacoche', 'startAngle' : 90,  'endAngle' : 134},
-        {id: 4, src: '/media/linge.png', 'name' : 'un linge de bain', 'startAngle' : 135, 'endAngle' : 179},
-        {id: 5, src: '/media/umbrella.png', 'name' : 'un parapluie', 'startAngle' : 180, 'endAngle' : 224},
-        {id: 6, src: '/media/sunglasses.png', 'name' : 'des lunettes', 'startAngle' : 225, 'endAngle' : 269},
-        {id: 7, src: '/media/mug.png', 'name' : 'une tasse', 'startAngle' : 270, 'endAngle' : 314},
-        {id: 8, src: '/media/torch.png', 'name' : 'une lampe', 'startAngle' : 315, 'endAngle' : 360}];
       if($location.search().test){
         wheel.debug = true;
         wheel.wheel.player = {
@@ -67,6 +79,9 @@ angular.module('gestionairFrontendApp')
             src: 'images/prizes/stylo.png'
           }
         };
+        $scope.$watch('win.prizeCountTest', function() {
+           wheel.wheel.prizes = generatePrizesList( $scope.win.prizeCountTest );
+        });
       }
     });
 
