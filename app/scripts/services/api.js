@@ -234,7 +234,7 @@ angular.module('gestionairFrontendApp')
        }));
     };
 
-    var wheel_timeout_timer;
+    var wheelTimeoutTimer;
 
     api.handleEvent = function ( msg ) {
       var player, phone;
@@ -302,9 +302,9 @@ angular.module('gestionairFrontendApp')
           //TODO maybe queue system?
           player = api.getPlayer(msg.playerId);
           player.state = msg.state;
-          if ( wheel_timeout_timer ) {
-                  $timeout.cancel(wheel_timeout_timer);
-          };
+          if ( wheelTimeoutTimer ) {
+                  $timeout.cancel(wheelTimeoutTimer);
+          }
           if (player.state === 'SCANNED_WHEEL' || player.state === 'SCANNED_PEN') {
             player.scan_time = msg.timestamp;
             api.wheel.won = undefined;
@@ -315,13 +315,13 @@ angular.module('gestionairFrontendApp')
             } else if (player.state === 'SCANNED_PEN') {
               player.prize = msg.prize;
 
-               wheel_timeout_timer = $timeout(function(){
+               wheelTimeoutTimer = $timeout(function(){
                 player.state = 'WON';
                 api.wheel.player = undefined;
               }, api.config.timeout_wheel);
             }
           } else {
-             wheel_timeout_timer = $timeout(function(){
+             wheelTimeoutTimer = $timeout(function(){
                 api.wheel.player = undefined;
               }, api.config.timeout_wheel);
           }
@@ -332,13 +332,13 @@ angular.module('gestionairFrontendApp')
           player = api.getPlayer(msg.playerId);
           player.wheel_time = msg.timestamp;
           player.prize = msg.prize;
-           if ( wheel_timeout_timer ) {
-                  $timeout.cancel(wheel_timeout_timer);
-               };
+          if (wheelTimeoutTimer) {
+            $timeout.cancel(wheelTimeoutTimer);
+          }
 
           api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
-          wheel_timeout_timer = $timeout(function(){
+          wheelTimeoutTimer = $timeout(function(){
                 player.state = 'WON';
                 api.wheel.player = undefined;
           }, msg.wheel_duration + 1000 + api.config.timeout_wheel);

@@ -64,7 +64,7 @@ angular.module('gestionairFrontendApp')
                 });
               }, 1000);
               p.attempts++;
-              p.languages.push({code: flag, correct: correct});
+              p.languages.push({lang: flag, correct: correct});
               p.state = 'PLAYING';
             }
 
