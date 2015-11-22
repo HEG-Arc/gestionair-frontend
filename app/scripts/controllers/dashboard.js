@@ -23,7 +23,7 @@ angular.module('gestionairFrontendApp')
 
     */
 
-    dashboard.displayPlayers = function( state ){
+    dashboard.displayPlayers = function ( state ) {
       var players = [];
       Object.keys(api.players).forEach(function(key){
         if (state === api.players[key].state) {
@@ -31,6 +31,24 @@ angular.module('gestionairFrontendApp')
         }
       });
       return players;
+    };
+
+    dashboard.msgFilter = function ( msg ) {
+      var filterEvent = function () {
+        if ( dashboard.filterEvent ) {
+          return dashboard.filterEvent === msg.type;
+        }
+        return true;
+      };
+
+      var filterPlayer = function () {
+        if ( dashboard.filterPlayer ) {
+          return Number(dashboard.filterPlayer) === msg.playerId || (msg.player && Number(dashboard.filterPlayer) === msg.player.id);
+        }
+        return true;
+      };
+
+      return filterEvent() && filterPlayer();
     };
 
     $scope.api = api;

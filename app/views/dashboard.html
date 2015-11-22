@@ -68,13 +68,37 @@
 
 			<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
 			<md-checkbox ng-model="dashboard.api.debug">
-			Show events
+			Collect events
 			</md-checkbox>
 		</div>
 		<div ng-if="dashboard.api.debug">
-			<div class="event-log" ng-repeat="m in dashboard.api.eventLogs" layout="row">
-				<div>{{dashboard.api.eventLogs.length - $index}}</div><pre>{{m}}</pre>
-			</div>
+			<md-tabs md-dynamic-height md-border-bottom>
+				<md-tab label="Messages">
+					<md-content class="md-padding">
+					<div>
+						<md-input-container>
+							<md-select ng-model="dashboard.filterEvent" placeholder="Event">
+								<md-option value="">ALL</md-option>
+								<md-option ng-value="event" ng-repeat="event in dashboard.api.eventTypes">{{ event }}</md-option>
+							</md-select>
+						</md-input-container>
+						<md-input-container>
+							<input placeholder="Player ID" ng-model="dashboard.filterPlayer">
+						</md-input-container>
+					</div>
+					<div>
+						<div class="event-log" ng-repeat="msg in api.eventMsgs | filter: dashboard.msgFilter track by $index">{{msg | json: 2}}</div>
+					</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="Raw Events">
+					<md-content class="md-padding">
+					<div class="event-log" ng-repeat="m in dashboard.api.eventLogs track by $index" layout="row">
+						<div>{{dashboard.api.eventLogs.length - $index}}</div><div>{{m}}</div>
+					</div>
+					</md-content>
+				</md-tab>
+			</md-tabs>
 		</div>
 	</div>
 		</md-card-content>

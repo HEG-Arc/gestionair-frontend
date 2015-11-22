@@ -34,6 +34,8 @@ angular.module('gestionairFrontendApp')
         };
 
         api.eventLogs = [];
+        api.eventMsgs = [];
+        api.eventTypes = [];
 
         var stompConnect = function () {
             var ws = new SockJS(URL + ':15674/stomp');
@@ -238,6 +240,14 @@ angular.module('gestionairFrontendApp')
 
     api.handleEvent = function ( msg ) {
       var player, phone;
+      if ( api.debug ) {
+        api.eventMsgs.push( angular.copy(msg) );
+        if ( msg.type && api.eventTypes.indexOf(msg.type) === -1 ) {
+          api.eventTypes.push(msg.type);
+          api.eventTypes.sort();
+        }
+      }
+
       switch (msg.type) {
         case 'PLAYER_CREATED':
           /*

@@ -28,6 +28,10 @@ md-content {
   background: none;
 }
 
+md-select-menu md-content {
+  background-color: #fff;
+}
+
 h2 {
   color: #fff;
   font-size: 4vw;
@@ -46,6 +50,20 @@ md-content h2{
 
 .controls .md-label{
   line-height: 72px;
+}
+
+.event-log > div{
+  padding: 4px;
+}
+
+.event-log > div:nth-child(1){
+  text-align: right;
+  min-width: 40px;
+
+}
+
+.event-log > div:nth-child(2){
+  font-family: monospace;
 }
 
 .event-log:nth-child(odd) {

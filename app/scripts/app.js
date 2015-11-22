@@ -49,7 +49,7 @@ angular
       });
   })
   .config(function($mdThemingProvider) {
-  $mdThemingProvider.definePalette('arc', {
+    var arc = $mdThemingProvider.extendPalette('blue', {
       '50': '0098d8',
       '100': '0098d8',
       '200': '0098d8',
@@ -63,14 +63,11 @@ angular
       'A100': '0098d8',
       'A200': '0098d8',
       'A400': '0098d8',
-      'A700': '0098d8',
-      'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
-                                          // on this palette should be dark or light
-      'contrastDarkColors': undefined,
-      'contrastLightColors': undefined    // could also specify this if default was 'dark'
-    });
+      'A700': '0098d8'
+  });
+  $mdThemingProvider.definePalette('arc', arc);
     $mdThemingProvider.theme('default')
-      .primaryPalette('arc')
+      .primaryPalette('blue')
       // If you specify less than all of the keys, it will inherit from the
       // default shades
       .accentPalette('green', {
