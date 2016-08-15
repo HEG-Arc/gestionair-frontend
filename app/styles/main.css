@@ -246,6 +246,10 @@ md-content h2{
   right: 0;
 }
 
+.md-sidenav-right {
+  z-index: 200;
+}
+
 #init {
   background-image: url('../images/boarding_intro.png');
   background-repeat: no-repeat;
