@@ -269,6 +269,9 @@ md-content h2{
 .md-sidenav-right {
   z-index: 200;
 }
+.md-sidenav-right .md-button{
+  width: 100%;
+}
 
 #init {
   background-image: url('../images/boarding_intro.png');
