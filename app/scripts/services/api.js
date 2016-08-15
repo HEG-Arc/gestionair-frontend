@@ -67,6 +67,7 @@ angular.module('gestionairFrontendApp')
       boarding_reset: 240000,
       slideshow_timer: 3000,
       timeout_wheel: 60000,
+      scores_nb_entries: 15,
       slideshow: [
         'images/slideshow/ARC1.jpg',
         'images/slideshow/ARC2.jpg',
@@ -80,7 +81,7 @@ angular.module('gestionairFrontendApp')
       mode: 'Mode',
       logout: 'Logout',
       login: 'Connexion',
-      username: "Nom d'utilistateur",
+      username: 'Nom d\'utilistateur',
       password: 'Mot de passe',
       connection_error: 'connection error, retrying...',
       signup: 'Inscription',
@@ -100,9 +101,9 @@ angular.module('gestionairFrontendApp')
       answer: 'Déviez l’appel vers le bon département',
       repeat: 'Raccrochez le téléphone et attendez qu’un téléphone sonne à nouveau pour répondre à la prochaine question',
       goto_wheel: 'Une fois votre mission accomplie, venez jouer à la roue de la fortune et remportez de nombreux prix !',
-      warn_ticket: "N'oubliez pas votre ticket!",
+      warn_ticket: 'N\'oubliez pas votre ticket!',
       new_player: 'Nouveau joueur',
-      msg_playing: /* Name */  "vous n'avez pas encore répondu à suffisament d'appels!",
+      msg_playing: /* Name */  'vous n\'avez pas encore répondu à suffisament d\'appels!',
       msg_already_won: /* Name */ 'vous avez déjà joué!',
       msg_won_pen: 'Vous avez gagné', /* price name */
       msg_won_wheel: 'Bravo vous avez gagné', /* price name */
@@ -141,8 +142,11 @@ angular.module('gestionairFrontendApp')
          api.players = result.data;
          Object.keys(api.players).forEach(function(key){
            var player = api.players[key];
+           var scores = [];
             if( player.state === 'LIMIT_REACHED'|| player.state === 'SCANNED' || player.state === 'WON') {
-              api.scores.push(player);
+              scores.push(player);
+              // TODO: sort '-limit_time'
+              // TODO: truncate to config.size
             }
          });
     });
@@ -236,6 +240,13 @@ angular.module('gestionairFrontendApp')
        }));
     };
 
+    api.addScore = function (player) {
+        api.scores.unshift(player);
+        while (api.scores.length > api.config.scores_nb_entries) {
+          api.scores.pop();
+        }
+    };
+
     var wheelTimeoutTimer;
 
     api.handleEvent = function ( msg ) {
@@ -304,7 +315,7 @@ angular.module('gestionairFrontendApp')
           player.score = msg.score;
           player.state = 'LIMIT_REACHED';
           player.languages = msg.languages;
-          api.scores.push(player);
+          api.addScore(player);
           break;
 
         case 'PLAYER_SCANNED':

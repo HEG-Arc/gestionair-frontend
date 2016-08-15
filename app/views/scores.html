@@ -6,14 +6,11 @@
 			<div flex="30" ng-bind="main.api.config.name">Nom</div>
 			<div flex="55" ng-bind="main.api.config.languages">Langues</div>
 		</div>
-		<div class="row" ng-repeat="p in scores.api.scores | orderBy: ['-limit_time'] track by p.id" layout="row">
+		<div class="row" ng-repeat="p in scores.api.scores track by p.id" layout="row">
 			<div flex="15" class="text-right">{{p.score}}</div>
 			<div flex="30">{{p.name}}</div>
 			<div flex="55">
-				<span ng-repeat="answer in p.languages track by $index" class="flag">
-					<span ng-class="{'correct': answer.correct, 'wrong': answer.correct==0, 'unknown': answer.correct==null}"></span>
-					<img ng-src="images/flags/{{answer.lang}}.png">
-				</span>
+				<flag ng-repeat="answer in p.languages track by $index" answer="answer"></flag>
 			</div>
 		</div>
 	</div>

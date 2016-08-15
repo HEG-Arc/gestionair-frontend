@@ -1,0 +1,4 @@
+<span class="flag">
+    <span ng-hide="answer.correct===''" ng-class="{'correct': answer.correct, 'wrong': answer.correct==0, 'unknown': answer.correct==null}"></span>
+    <img ng-if="getLang()!=''" ng-src="images/flags/{{getLang()}}.png">
+</span>

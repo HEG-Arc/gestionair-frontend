@@ -182,6 +182,26 @@ md-content h2{
     animation: hide 1s;
 }
 
+.phones-dashboard {
+  list-style-type: none;
+}
+
+.phones-dashboard .flag {
+  height: 35px;
+  line-height: 35px;
+}
+
+.phones-dashboard .flag img{
+    height: 30px;
+}
+
+.phones-dashboard .flag .wrong,
+.phones-dashboard .flag .correct,
+.phones-dashboard .flag .unknown{
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+}
 
 @keyframes show {
   0% {
@@ -331,8 +351,10 @@ md-content h2{
 .flag{
     padding: 0 10px;
     height: 70px;
+    line-height: 70px;
     position: relative;
     display: inline-block;
+    vertical-align: middle;
 }
 
 .flag img{
