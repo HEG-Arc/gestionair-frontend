@@ -7,7 +7,7 @@
  * # slideshow
  */
 angular.module('gestionairFrontendApp')
-  .directive('flag', function ($timeout) {
+  .directive('flag', function () {
     return {
       templateUrl: 'views/flag.html',
       replace: true,
@@ -18,7 +18,7 @@ angular.module('gestionairFrontendApp')
       link: function postLink(scope) {
           scope.getLang = function () {
               return scope.answer && scope.answer.lang || scope.answer.flag;
-          }
+          };
       }
     };
   });
