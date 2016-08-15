@@ -26,6 +26,7 @@ angular.module('gestionairFrontendApp')
     };
 
     this.handleKeyPress = function ( event ){
+      // ctrl + shift + x
       if( event.ctrlKey && event.shiftKey && event.keyCode === 24 ){
         main.logout();
       }
