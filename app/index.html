@@ -25,7 +25,7 @@
       <slideshow images="main.api.config.slideshow" duration="main.api.config.slideshow_timer"></slideshow>
     </div>
     <md-content flex layout="column">
-      <md-button id="menu-button" ng-click="main.toggleLeftMenu()" class="md-icon-button md-primary" ng-if="main.mode=='dashboard'">
+      <md-button aria-label="menu" id="menu-button" ng-click="main.toggleLeftMenu()" class="md-icon-button md-primary" ng-if="main.mode=='dashboard'">
         <md-icon md-svg-icon="images/ic_settings_black_48px.svg"></md-icon>
       </md-button>
       <div id="connect_error" ng-hide="main.api.isConnected" ng-bind="main.api.config.connection_error"></div>
