@@ -241,7 +241,7 @@ md-content h2{
 }
 
 #menu-button {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
 }
