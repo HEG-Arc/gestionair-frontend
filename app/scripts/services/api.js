@@ -139,16 +139,21 @@ angular.module('gestionairFrontendApp')
     //get scores from server
      $http.get(URL + '/game/api/players-list')
     .then(function( result ){
-         api.players = result.data;
-         Object.keys(api.players).forEach(function(key){
+        api.players = result.data;
+        var scores = [];
+        Object.keys(api.players).forEach(function(key){
            var player = api.players[key];
-           var scores = [];
+           if (player.languages) {
+               player.languages = JSON.parse(player.languages);
+           }
             if( player.state === 'LIMIT_REACHED'|| player.state === 'SCANNED' || player.state === 'WON') {
-              scores.push(player);
-              // TODO: sort '-limit_time'
-              // TODO: truncate to config.size
+                scores.push(player);
             }
          });
+         scores = scores.sort(function (a, b) {
+           return new Date(b['limit_time']).getTime() - new Date(a['limit_time']).getTime();
+         });
+         api.scores = scores.slice(0,api.config.scores_nb_entries);
     });
 
     api.phones = {}; //number : {state: 'offline', player, flag}
