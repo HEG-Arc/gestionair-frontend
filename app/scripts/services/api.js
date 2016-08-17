@@ -11,7 +11,7 @@ angular.module('gestionairFrontendApp')
   .service('api', function ( $rootScope, $http, $timeout, $window, sim ) {
 
     var api = this;
-    var URL = 'http://157.26.114.116';
+    var URL = 'http://10.0.75.2';
 
     api.isConnected = false;
     api.debug = false;
@@ -151,7 +151,7 @@ angular.module('gestionairFrontendApp')
             }
          });
          scores = scores.sort(function (a, b) {
-           return new Date(b['limit_time']).getTime() - new Date(a['limit_time']).getTime();
+           return new Date(b.limit_time).getTime() - new Date(a.limit_time).getTime();
          });
          api.scores = scores.slice(0,api.config.scores_nb_entries);
     });
@@ -207,6 +207,9 @@ angular.module('gestionairFrontendApp')
         if ( id > -1 ) {
           api.players[id] = player;
         }
+      }
+      if (!player.hasOwnProperty('languages') || !player.languages) {
+        player.languages = [];
       }
       return player;
     };
@@ -296,14 +299,17 @@ angular.module('gestionairFrontendApp')
           player.state = 'PLAYING';
           player.lastplay_time = msg.timestamp;
           player.attempts++;
+          player.languages.push({lang: msg.flag});
 
           phone = api.getPhone(msg.number);
           phone.flag = msg.flag;
+          phone.state = 'ANSWERING';
           phone.player = player;
           break;
 
         case 'PLAYER_ANSWERED':
           player = api.getPlayer(msg.playerId);
+          player.languages[player.languages.length - 1].correct = msg.correct;
           phone = api.getPhone(msg.number);
           phone.correct = msg.correct;
           $timeout(function(){
@@ -374,21 +380,25 @@ angular.module('gestionairFrontendApp')
         case 'PHONE_RINGING':
           phone = api.getPhone(msg.number);
           phone.state = 'RINGING';
+          phone.correct = '';
           break;
 
         case 'PHONE_STOPRINGING':
           phone = api.getPhone(msg.number);
           phone.state = 'ONLINE';
+          phone.correct = '';
           break;
 
         case 'PHONE_OFFLINE':
           phone = api.getPhone(msg.number);
           phone.state = 'OFFLINE';
+          phone.correct = '';
           break;
 
         case 'PHONE_ONLINE':
           phone = api.getPhone(msg.number);
           phone.state = 'ONLINE';
+          phone.correct = '';
           break;
 
         case 'FRONTEND_REFRESH':
