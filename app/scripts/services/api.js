@@ -11,7 +11,7 @@ angular.module('gestionairFrontendApp')
   .service('api', function ( $rootScope, $http, $timeout, $window, sim ) {
 
     var api = this;
-    var URL = 'http://10.0.75.2';
+    var URL = 'http://192.168.1.1';
 
     api.isConnected = false;
     api.debug = false;

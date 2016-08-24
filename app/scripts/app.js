@@ -44,7 +44,7 @@ angular
         controllerAs: 'wheel'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/boarding'
       });
   })
   .config(function($mdThemingProvider) {
