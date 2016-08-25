@@ -19,7 +19,9 @@ angular.module('gestionairFrontendApp')
       $location.path('/' + mode);
     };
 
-    this.setMode( $cookies.get('mode') );
+    if ($cookies.get('mode') !== undefined){
+      this.setMode( $cookies.get('mode') );
+    }
 
     this.toggleLeftMenu = function() {
       $mdSidenav('left').toggle();
