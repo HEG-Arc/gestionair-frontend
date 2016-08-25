@@ -292,6 +292,7 @@ angular.module('gestionairFrontendApp')
           player = api.getPlayer(msg.playerId);
           player.print_time = msg.timestamp;
           player.state = 'PRINTED';
+          player.attempts = 0;
           break;
 
         case 'PLAYER_ANSWERING':
@@ -348,8 +349,11 @@ angular.module('gestionairFrontendApp')
               player.prize = msg.prize;
 
                wheelTimeoutTimer = $timeout(function(){
-                player.state = 'WON';
                 api.wheel.player = undefined;
+              }, api.config.timeout_wheel);
+
+              $timeout(function(){
+                player.state = 'WON';
               }, api.config.timeout_wheel);
             }
           } else {
@@ -371,8 +375,11 @@ angular.module('gestionairFrontendApp')
           api.startWheels({duration: msg.wheel_duration, prize: player.prize});
 
           wheelTimeoutTimer = $timeout(function(){
-                player.state = 'WON';
                 api.wheel.player = undefined;
+          }, msg.wheel_duration + 1000 + api.config.timeout_wheel);
+
+          $timeout(function(){
+                player.state = 'WON';
           }, msg.wheel_duration + 1000 + api.config.timeout_wheel);
 
           break;
