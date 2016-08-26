@@ -242,6 +242,10 @@ angular.module('gestionairFrontendApp')
       return $http.get(URL + '/game/api/call/' + number);
     };
 
+    api.playSound = function ( sound ) {
+      return $http.get(URL + '/game/api/play-sound/' + sound);
+    };
+
     api.sendRefresh = function () {
        server.send('/exchange/gestionair/simulation', {}, angular.toJson({
          type: 'FRONTEND_REFRESH'

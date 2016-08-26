@@ -14,6 +14,7 @@ angular.module('gestionairFrontendApp')
     var dashboard = this;
     dashboard.api = api;
     dashboard.stats = {};
+    dashboard.sound = 'call';
 
     /*
     //other stats?

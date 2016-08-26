@@ -67,6 +67,11 @@
 			<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
 
 			<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
+			<md-select ng-model="sound" placeholder="sound">
+				<md-option value="call">Call</md-option>
+				<md-option value="ambiance">Ambiance</md-option>
+			</md-select>
+			<md-button class="md-raised md-primary" ng-click="dashboard.api.playSound( sound )">Play</md-button>
 			<md-checkbox ng-model="dashboard.api.debug">
 			Collect events
 			</md-checkbox>
