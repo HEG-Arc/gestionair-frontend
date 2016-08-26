@@ -21,7 +21,8 @@ body {
 .background-linus {
   background-image: url('../images/background_light_linus.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 1920px;
+  background-position: 0 100%;
 }
 
 md-content {
