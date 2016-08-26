@@ -76,12 +76,7 @@ angular.module('gestionairFrontendApp')
               stroke: 'none',
               strokeWidth: 0
           });
-          gWheel.text(c, 410, 'ARC').attr({
-            'text-anchor': 'middle',
-            'font-size': '2em',
-            'font-weight': 'bold',
-            fill: '#fff'
-          });
+          gWheel.image('images/arc.svg', 360, 380, 80, 40);
         };
 
         scope.$watch('internalControl.prizes', drawPrizes, true);
