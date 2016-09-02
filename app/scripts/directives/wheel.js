@@ -117,6 +117,7 @@ angular.module('gestionairFrontendApp')
 
         scope.internalControl.spin = function (options) {
           var targetIndex = scope.internalControl.getPrizeIndex( options.prize );
+          var prize = scope.internalControl.prizes[targetIndex];
           var duration = options.duration || 3000;
           if(!spinning && typeof  targetIndex !== 'undefined') { // TODO? what happens to event?
             scope.internalControl.won = undefined;
@@ -134,6 +135,7 @@ angular.module('gestionairFrontendApp')
                 spinning = false;
                 $timeout(function(){
                     scope.internalControl.won = scope.internalControl.prizes[targetIndex];
+                    scope.internalControl.player.prize = prize;
                 }, 1000);
               });
             });
