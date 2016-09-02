@@ -115,7 +115,7 @@ angular.module('gestionairFrontendApp')
       phones: 'Phones',
       debug: 'Debug',
       control: 'Control',
-      bumper: 'Bouton',
+      bumper: 'Bumper',
       scan: 'Scan',
       created: 'CREATED',
       printed: 'PRINTED',
@@ -249,6 +249,13 @@ angular.module('gestionairFrontendApp')
     api.sendRefresh = function () {
        server.send('/exchange/gestionair/simulation', {}, angular.toJson({
          type: 'FRONTEND_REFRESH'
+       }));
+    };
+
+    api.sendDMXAnim = function (anim) {
+      // [ [[channel, value], [channel, value]], 0.5, ... ]
+      server.send('/exchange/gestionair/simulation', {}, angular.toJson({
+         type: 'DMX_ANIM', anim: anim
        }));
     };
 

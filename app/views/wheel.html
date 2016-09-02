@@ -8,7 +8,7 @@
 	<div ng-show="wheel.wheel.player.state == 'SCANNED_PEN'">
 		<h2 class="won">{{wheel.wheel.player.name}} {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.<br>
 		{{main.api.config.msg_won_pen}} {{wheel.wheel.player.prize.name}}:</h2>
-		<p style="text-align:center;"><img ng-src="{{wheel.wheel.player.prize.src}}" /></p>
+		<p style="text-align:center;"><img ng-src="{{<wheel class="wheel player prize "></wheel>src}}" /></p>
 	</div>
 	<div ng-show="wheel.wheel.player.state == 'SCANNED_WHEEL'" layout="column">
 	<h2 ng-hide="wheel.wheel.player.id < 0">{{wheel.wheel.player.name}}  {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.</h2>

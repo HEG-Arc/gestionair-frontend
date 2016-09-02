@@ -52,6 +52,53 @@ angular.module('gestionairFrontendApp')
       return filterEvent() && filterPlayer();
     };
 
+    dashboard.sendScene = function () {
+      var anim = [];
+      var scene = [];
+      $scope.dmx.values.split(',').forEach(function(v, index){
+        scene.push([parseInt($scope.dmx.channel) + index, parseInt(v)]);
+      });
+      anim.push(scene);
+      api.sendDMXAnim(anim);
+    };
+
+    dashboard.rainbow = function(len, steps, speed, center, width, phase){
+      var anim = [];
+
+      phase = phase || 0;
+      center = center || 128;
+      width = width || 127;
+      var frequency = Math.PI*2/steps;
+      for (var i = 0; i < len; ++i) {
+        var red   = Math.round(Math.sin(frequency*i+2+phase) * width + center);
+        var green = Math.round(Math.sin(frequency*i+0+phase) * width + center);
+        var blue  = Math.round( Math.sin(frequency*i+4+phase) * width + center);
+        anim.push([[300, green], [301, red], [302, blue]]);
+        anim.push([[320, red], [321, green], [322, blue], [323, 255], [324, 0]]);
+        anim.push(speed);
+      }
+      api.sendDMXAnim(anim);
+    };
+//r,g,b,255,0
+//g,r,
+    $scope.$watch('dmx.color', function(color){
+      var matchColors = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
+      var match = matchColors.exec(color);
+      console.log(match);
+      if (match !== null) {
+        var red = parseInt(match[1]);
+        var green = parseInt(match[2]);
+        var blue = parseInt(match[3]);
+        if ($scope.dmx.channel == '300') {
+          api.sendDMXAnim([[[300, green], [301, red], [302, blue]]]);
+        }
+        if ($scope.dmx.channel === '320') {
+          api.sendDMXAnim([[[320, red], [321, green], [322, blue], [323, 255], [324, 0]]]);
+        }
+      }
+    });
+
+
     $scope.api = api;
 
     $scope.$watch('api.players', function(){

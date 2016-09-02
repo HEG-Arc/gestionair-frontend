@@ -34,6 +34,8 @@ module.exports = function(config) {
       'bower_components/Snap.svg/dist/snap.svg-min.js',
       'bower_components/stomp-websocket/lib/stomp.min.js',
       'bower_components/sockjs-client/dist/sockjs.js',
+      'bower_components/tinycolor/tinycolor.js',
+      'bower_components/angular-color-picker/dist/angularjs-color-picker.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
