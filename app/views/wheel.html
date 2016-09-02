@@ -37,4 +37,5 @@
 	<input type="number" min="0" max="16" ng-model="win.prizeCountTest">
 		isSpinning: {{wheel.wheel.isSpinning()}}
 	<md-button ng-click="wheel.wheel.spin(win)" class="md-primary">SPIN</md-button>
+	<md-button ng-click="wheel.wheel.won = undefined;" class="md-warn">reset</md-button>
 </div>
