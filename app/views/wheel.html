@@ -6,9 +6,10 @@
 		<h2 class="won">{{wheel.wheel.player.name}} {{main.api.config.msg_already_won}}</h2>
 	</div>
 	<div ng-show="wheel.wheel.player.state == 'SCANNED_PEN'">
-		<h2 class="won">{{wheel.wheel.player.name}} {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.<br>
-		{{main.api.config.msg_won_pen}} {{wheel.wheel.player.prize.name}}:</h2>
-		<p style="text-align:center;"><img ng-src="{{<wheel class="wheel player prize "></wheel>src}}" /></p>
+		<h2 class="won won-pic">{{wheel.wheel.player.name}} {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.<br>
+		{{main.api.config.msg_won_pen}} {{wheel.wheel.player.prize.name}}
+		<p style="text-align:center;"><img ng-src="{{wheel.wheel.player.prize.src}}" /></p>
+		</h2>
 	</div>
 	<div ng-show="wheel.wheel.player.state == 'SCANNED_WHEEL'" layout="column">
 	<h2 ng-hide="wheel.wheel.player.id < 0">{{wheel.wheel.player.name}}  {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.</h2>
@@ -16,8 +17,10 @@
 
 	<div style="text-align: center;">
 		<wheel control="wheel.wheel"></wheel>
-		<h2 ng-show="wheel.wheel.won" class="won fadein">{{main.api.config.msg_won_wheel}}<br/>
-		{{wheel.wheel.won.name}}</h2>
+		<h2 ng-show="wheel.wheel.won" class="won won-pic fadein">{{main.api.config.msg_won_wheel}}<br/>
+		{{wheel.wheel.won.name}}
+		<p style="text-align:center;"><img ng-src="{{wheel.wheel.player.prize.src}}" /></p>
+		</h2>
 	</div>
 		<div ng-if="wheel.debug">
 			<h3>debug</h3>

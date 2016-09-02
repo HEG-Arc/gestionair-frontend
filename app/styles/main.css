@@ -357,6 +357,10 @@ md-content h2{
     text-align: center;
 }
 
+.won-pic {
+   top: 10%;
+}
+
 .flag{
     padding: 0 10px;
     height: 70px;
