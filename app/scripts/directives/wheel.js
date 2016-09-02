@@ -47,6 +47,7 @@ angular.module('gestionairFrontendApp')
         var drawPrizes = function () {
           var x1, y1, x2, y2;
           gWheel.clear();
+          //draw Path
           scope.internalControl.prizes.forEach(function ( item, i ) {
               //substract 90 to start on top and not to the right
               x1 = Math.round( c + r * Math.cos(Snap.rad(item.startAngle-90)));
@@ -62,11 +63,15 @@ angular.module('gestionairFrontendApp')
                 'stroke-width': '8px',
                 fill: 'none'
               });
-
+          });
+          //drawpics
+          scope.internalControl.prizes.forEach(function ( item, i ) {
               var gi = gWheel.g();
+              var size = Math.round(Math.sin(Snap.rad(item.endAngle - item.startAngle)) * r / 2);
+              var halfSize = Math.round(size/2);
               var middleAngle = item.startAngle + (( item.endAngle - item.startAngle ) / 2);
-              gi.image(scope.internalControl.URL + item.src, 0, 0, 150, 150)
-              .transform('T-75,-75R' + (180 - middleAngle) + ', 0, 0');
+              gi.image(scope.internalControl.URL + item.src, 0, 0, size, size)
+              .transform('T-' + halfSize + ',-' + halfSize + 'R' + (180 - middleAngle) + ', 0, 0');
               gi.transform('t' + (c + Math.cos(Snap.rad(middleAngle-90)) * r * 0.7) + ',' + (c + Math.sin(Snap.rad(middleAngle-90)) * r * 0.7));
 
           });
