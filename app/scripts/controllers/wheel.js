@@ -39,7 +39,7 @@ angular.module('gestionairFrontendApp')
     $scope.win = {
       prize: 1,
       duration: 1000,
-      prizeCountTest: 8
+      prizeCountTest: 10
     };
 
     var testPrizes = [
@@ -50,7 +50,15 @@ angular.module('gestionairFrontendApp')
         {id: 5, src: '/media/umbrella.png', 'name' : 'un parapluie'},
         {id: 6, src: '/media/sunglasses.png', 'name' : 'des lunettes'},
         {id: 7, src: '/media/mug.png', 'name' : 'une tasse'},
-        {id: 8, src: '/media/torch.png', 'name' : 'une lampe'}];
+        {id: 8, src: '/media/torch.png', 'name' : 'une lampe'},
+        {id: 9, src: '/media/penbook.png', 'name' : 'un bloc-note'},
+        {id: 10, src: '/media/keycgain.png', 'name' : 'un porte-clefs'},
+        {id: 11, src: '/media/bag.png', 'name' : 'une sacoche'},
+        {id: 12, src: '/media/linge.png', 'name' : 'un linge de bain'},
+        {id: 13, src: '/media/umbrella.png', 'name' : 'un parapluie'},
+        {id: 14, src: '/media/sunglasses.png', 'name' : 'des lunettes'},
+        {id: 15, src: '/media/mug.png', 'name' : 'une tasse'},
+        {id: 16, src: '/media/torch.png', 'name' : 'une lampe'}];
 
     function generatePrizesList( n ){
         var prizes = [];

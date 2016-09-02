@@ -361,6 +361,10 @@ md-content h2{
    top: 10%;
 }
 
+.won-pic img {
+    max-height: 30vh;
+}
+
 .flag{
     padding: 0 10px;
     height: 70px;

@@ -12,24 +12,29 @@
 		</h2>
 	</div>
 	<div ng-show="wheel.wheel.player.state == 'SCANNED_WHEEL'" layout="column">
-	<h2 ng-hide="wheel.wheel.player.id < 0">{{wheel.wheel.player.name}}  {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.</h2>
-	<h2>{{main.api.config.msg_turn_wheel}}</h2>
+		<h2 ng-hide="wheel.wheel.player.id < 0">{{wheel.wheel.player.name}}  {{main.api.config.msg_with_your}} {{wheel.wheel.player.score}} {{main.api.config.msg_points}}.</h2>
+		<h2>{{main.api.config.msg_turn_wheel}}</h2>
 
-	<div style="text-align: center;">
-		<wheel control="wheel.wheel"></wheel>
-		<h2 ng-show="wheel.wheel.won" class="won won-pic fadein">{{main.api.config.msg_won_wheel}}<br/>
-		{{wheel.wheel.won.name}}
-		<p style="text-align:center;"><img ng-src="{{wheel.wheel.player.prize.src}}" /></p>
-		</h2>
-	</div>
-		<div ng-if="wheel.debug">
-			<h3>debug</h3>
-			{{wheel.wheel.isSpinning()}}
-
-			<input type="number" ng-model="win.prize">
-			<input type="number" ng-model="win.duration">
-			<input type="number" min="0" max="8" ng-model="win.prizeCountTest">
-			<md-button ng-click="wheel.wheel.spin(win)">SPIN</md-button>
+		<div style="text-align: center;">
+			<wheel control="wheel.wheel"></wheel>
+			<h2 ng-show="wheel.wheel.won" class="won won-pic fadein">{{main.api.config.msg_won_wheel}}<br/>
+			{{wheel.wheel.won.name}}
+			<p style="text-align:center;"><img ng-src="{{wheel.wheel.player.prize.src}}" /></p>
+			</h2>
 		</div>
 	</div>
+</div>
+<div ng-if="wheel.debug" style="position:fixed;bottom:0;background-color:rgba(255,255,255,0.3)">
+	<select ng-model="wheel.wheel.player.state">
+		<option>SCANNED_WHEEL</option>
+		<option>SCANNED_PEN</option>
+		<option>PLAYING</option>
+		<option>WON</option>
+	</select>
+	<select ng-model="win.prize" ng-options="p.id as p.name for p in  wheel.wheel.prizes">
+	</select>
+	<input type="number" ng-model="win.duration">
+	<input type="number" min="0" max="16" ng-model="win.prizeCountTest">
+		isSpinning: {{wheel.wheel.isSpinning()}}
+	<md-button ng-click="wheel.wheel.spin(win)" class="md-primary">SPIN</md-button>
 </div>
