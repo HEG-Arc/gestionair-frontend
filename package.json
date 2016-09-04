@@ -30,7 +30,8 @@
     "jshint-stylish": "^2.2.1",
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
-    "time-grunt": "^1.0.0"
+    "time-grunt": "^1.0.0",
+    "bower-npm-resolver": "^0.5.1"
   },
   "engines": {
     "node": ">=0.10.0"

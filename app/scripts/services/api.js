@@ -77,6 +77,7 @@ angular.module('gestionairFrontendApp')
       boarding: 'Boarding',
       wheel: 'Wheel',
       scores: 'Scores',
+      stats: 'Stats',
       dashboard: 'Dashboard',
       mode: 'Mode',
       logout: 'Logout',

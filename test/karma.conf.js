@@ -36,6 +36,8 @@ module.exports = function(config) {
       'bower_components/sockjs-client/dist/sockjs.js',
       'bower_components/tinycolor/tinycolor.js',
       'bower_components/angular-color-picker/dist/angularjs-color-picker.js',
+      'bower_components/chart.js/dist/Chart.bundle.min.js',
+      'bower_components/angular-chart.js/dist/angular-chart.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -1,0 +1,121 @@
+<md-content id="stats">
+    <div class="page">
+        <header layout="row">
+            <h1>Gestionair</h1>
+            <span flex></span>
+            <img id="logo" src="images/logo_arc_gestion.jpg">
+        </header>
+        <h1>{{$ctrl.data.event.name}}</h1>
+        <h2>Statistiques du {{$ctrl.data.day}}</h2>
+
+        <div layout="row">
+            <div flex>
+                <h4>Fréquentation</h4>
+                <canvas id="attendance" class="chart chart-bar" chart-data="$ctrl.attendance.data" chart-labels="$ctrl.attendance.labels"
+                    chart-options="$ctrl.attendance.options" chart-dataset-override="$ctrl.attendance.datasetOverride">
+                </canvas>
+                <p>Au total il y a eu <b>{{$ctrl.attendance.total}}</b> visiteurs</p>
+            </div>
+            <div flex="5"></div>
+            <div flex="30">
+                <h4>Fidélisation</h4>
+                <br/>
+                <table id="retention">
+                    <tr>
+                        <th>Enregistré:</th>
+                        <td>{{$ctrl.data.stats.retention.register}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Joué:</th>
+                        <td>{{$ctrl.data.stats.retention.last_answer}}</td>
+                        <td> ( {{$ctrl.data.stats.retention.last_answer/$ctrl.data.stats.retention.register*100|number:2}}% )
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fini:</th>
+                        <td>{{$ctrl.data.stats.retention.limit}}</td>
+                        <td>({{$ctrl.data.stats.retention.limit/$ctrl.data.stats.retention.last_answer*100|number:2}}% )</td>
+                    </tr>
+                    <tr>
+                        <th>Scanné:</th>
+                        <td>{{$ctrl.data.stats.retention.scan}}</td>
+                        <td>({{$ctrl.data.stats.retention.scan/$ctrl.data.stats.retention.limit*100|number:2}}% ) </td>
+                    </tr>
+                    <tr>
+                        <th>Debloqué:</th>
+                        <td>{{$ctrl.data.stats.retention.unlocked}}</td>
+                        <td>({{$ctrl.data.stats.retention.unlocked/$ctrl.data.stats.retention.scan*100|number:2}}% )</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div layout="row">
+            <div flex>
+                <h4>Gains</h4>
+                <div style="position: relative">
+                    <div style="width: 100%; height: 40px; position: absolute; top: 50%; left: 0; margin-top: -28px; font-size: 0.8em; line-height:0.8em; text-align: center; z-index: 999999999999999">
+                        {{ $ctrl.data.stats.win.wheel / ($ctrl.data.stats.win.wheel + $ctrl.data.stats.win.free) * 100 | number:0}}%
+                    </div>
+                    <canvas id="gains" class="chart chart-doughnut" chart-data="$ctrl.gains.data" chart-labels="$ctrl.gains.labels" chart-options="$ctrl.gains.options"
+                        chart-dataset-override="$ctrl.gains.datasetOverride">
+                    </canvas>
+                </div>
+            </div>
+            <div flex>
+                <h4>Scores</h4>
+                <canvas id="scores" class="chart chart-bubble" chart-data="$ctrl.scores.data" chart-options="$ctrl.scores.options" chart-dataset-override="$ctrl.scores.datasetOverride">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <header layout="row">
+            <h1>Gestionair</h1>
+            <span flex></span>
+            <img id="logo" src="images/logo_arc_gestion.jpg">
+        </header>
+        <h1>{{$ctrl.data.event.name}}</h1>
+        <h2>Stock restant {{$ctrl.data.current_time | date:'dd.MM @ HH:mm'}}</h2>
+        <div layout="row">
+            <div flex>
+                <h4>Par quantité</h4>
+                <!-- should be a component -->
+                <table class="inventory">
+                    <thead>
+                        <tr>
+                            <th ng-click="$ctrl.invSort='name'">Article</th>
+                            <th ng-click="$ctrl.invSort='-stock'">Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in $ctrl.data.inventory | orderBy: $ctrl.invSort" ng-class="{'stock-out': i.stock == 0, 'stock-low': i.stock > 0 && i.stock < 50}">
+                            <td>{{i.name}}</td>
+                            <td>{{i.stock}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div flex="10"></div>
+            <div flex>
+                <h4>Par article</h4>
+                <table class="inventory">
+                    <thead>
+                        <tr>
+                            <th ng-click="$ctrl.invSort2='name'">Article</th>
+                            <th ng-click="$ctrl.invSort2='-stock'">Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in $ctrl.data.inventory | orderBy: $ctrl.invSort2" ng-class="{'stock-out': i.stock == 0, 'stock-low': i.stock > 0 && i.stock < 50}">
+                            <td>{{i.name}}</td>
+                            <td>{{i.stock}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</md-content>

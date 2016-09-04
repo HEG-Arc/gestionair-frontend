@@ -1,0 +1,131 @@
+{
+    "current_time": "2016-09-03T22:08:59.450Z",
+    "attendance": {
+        "2015-11-21 14:00": 36,
+        "2015-11-21 12:00": 47,
+        "2015-11-21 06:00": 2,
+        "2015-11-21 11:00": 49,
+        "2015-11-21 10:00": 41,
+        "2015-11-21 09:00": 23,
+        "2015-11-21 13:00": 38,
+        "2015-11-21 15:00": 1,
+        "2015-11-21 07:00": 8
+    },
+    "stats": {
+        "win": {
+            "wheel": 129,
+            "free": 4
+        },
+        "retention": {
+            "scan": 133,
+            "unlocked": 10,
+            "register": 267,
+            "start": 0,
+            "limit": 149,
+            "last_answer": 0
+        },
+        "scores": {
+            "160": 1,
+            "130": 10,
+            "100": 27,
+            "230": 5,
+            "200": 16,
+            "80": 2,
+            "50": 35,
+            "180": 7,
+            "150": 26,
+            "250": 3
+        }
+    },
+    "day": "2015-11-21",
+    "inventory": [
+        {
+            "name": "Bloc-notes",
+            "percentage": 0,
+            "stock": 0,
+            "big": true,
+            "free": false
+        },
+        {
+            "name": "Bonbon",
+            "percentage": 10,
+            "stock": 9,
+            "big": false,
+            "free": false
+        },
+        {
+            "name": "Bonnet",
+            "percentage": 10,
+            "stock": 139,
+            "big": false,
+            "free": false
+        },
+        {
+            "name": "Casquette",
+            "percentage": 10,
+            "stock": 10,
+            "big": true,
+            "free": false
+        },
+        {
+            "name": "Lampe",
+            "percentage": 30,
+            "stock": 190,
+            "big": false,
+            "free": false
+        },
+        {
+            "name": "Linge",
+            "percentage": 4,
+            "stock": 22,
+            "big": true,
+            "free": false
+        },
+        {
+            "name": "Lunettes",
+            "percentage": 19,
+            "stock": 105,
+            "big": false,
+            "free": false
+        },
+        {
+            "name": "Parapluie",
+            "percentage": 6,
+            "stock": 32,
+            "big": true,
+            "free": false
+        },
+        {
+            "name": "Porte-cl\u00e9s",
+            "percentage": 24,
+            "stock": 146,
+            "big": false,
+            "free": true
+        },
+        {
+            "name": "Sacoche",
+            "percentage": 5,
+            "stock": 28,
+            "big": true,
+            "free": false
+        },
+        {
+            "name": "Stylo",
+            "percentage": 0,
+            "stock": 10,
+            "big": false,
+            "free": false
+        },
+        {
+            "name": "Tasse",
+            "percentage": 5,
+            "stock": 29,
+            "big": true,
+            "free": false
+        }
+    ],
+    "event": {
+        "id": "a",
+        "name": "Capa'cit\u00e9 2016"
+    }
+}

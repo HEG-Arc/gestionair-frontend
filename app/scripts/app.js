@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngMaterial',
-    'color.picker'
+    'color.picker',
+    'chart.js'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -45,6 +46,11 @@ angular
         controller: 'WheelCtrl',
         controllerAs: 'wheel'
       })
+      .when('/stats', {
+        templateUrl: 'views/stats.html',
+        controller: 'StatsCtrl',
+        controllerAs: '$ctrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -66,6 +72,7 @@ angular
       'A400': '0098d8',
       'A700': '0098d8'
   });
+
   $mdThemingProvider.definePalette('arc', arc);
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')

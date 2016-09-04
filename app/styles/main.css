@@ -406,3 +406,100 @@ md-content h2{
     background-image:  url('../images/Question_mark_512.png');
 
 }
+
+/* STATS page */
+#stats header{
+  margin-bottom: 2em;
+}
+
+#logo {
+  height: 60px;
+}
+
+#stats h1 {
+  margin-bottom: 0.5em;
+}
+
+#stats h2 {
+  font-size: 24px;
+}
+
+#stats h3 {
+  margin:0;
+}
+
+#stats h4 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+}
+
+.page {
+    width: 210mm;
+    height: 297mm;
+    padding: 10mm;
+    margin: 10mm auto;
+    border: 1px #D3D3D3 solid;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+#retention th {
+  text-align: left;
+  font-weight: normal;
+  font-style: italic;
+}
+
+#retention td {
+  text-align: right;
+}
+
+.inventory {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.inventory th,
+.inventory td {
+  border-bottom: 1px solid #0098d8;
+  padding: 4px;
+
+}
+
+.inventory th:nth-child(1),
+.inventory td:nth-child(1) {
+  border-right: 1px solid #0098d8;
+}
+
+.inventory th {
+  text-align: left;
+}
+
+.inventory td:nth-child(2) {
+  text-align: right;
+}
+.stock-out {
+  color: #FF5722;
+}
+
+.stock-low {
+  color: #FFC107;
+}
+
+@media print {
+    html, body {
+        width: 210mm;
+        height: 297mm;
+    }
+    .page {
+        margin: 0;
+        padding: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+}
