@@ -68,11 +68,13 @@
 			</md-input-container>
 
 			<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
-			<md-select ng-model="sound" placeholder="sound">
+			<md-select ng-model="dashboard.sound" placeholder="sound">
 				<md-option value="call">Call</md-option>
 				<md-option value="ambiance">Ambiance</md-option>
+				<md-option value="wheel-small">wheel-small</md-option>
+				<md-option value="wheel-big">wheel-big</md-option>
 			</md-select>
-			<md-button class="md-raised md-primary" ng-click="dashboard.api.playSound( sound )">Play</md-button>
+			<md-button class="md-raised md-primary" ng-click="dashboard.api.playSound( dashboard.sound )">Play</md-button>
 		</div>
 		<div layout="row">
 			<md-input-container>
@@ -83,6 +85,7 @@
 			</md-input-container>
 			<md-button class="md-raised md-primary" ng-click="dashboard.sendScene()">Send</md-button>
 			<color-picker ng-model="dmx.color" options="{format:'rgb'}"></color-picker>
+			
 		</div>
 
 			<md-checkbox ng-model="dashboard.api.debug">
