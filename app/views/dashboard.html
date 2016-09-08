@@ -44,7 +44,7 @@
 
 	<h3 ng-bind="main.api.config.phones">Phones</h3>
 	<ul class="phones-dashboard">
-		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number"><b>{{p.number}} {{p.state}}</b> {{p.player.name}} <flag answer="p"></flag></li>
+		<li ng-repeat="p in dashboard.api.phones | orderBy: p.number"><b ng-click="dashboard.api.call(p.number)">{{p.number}} {{p.state}}</b> {{p.player.name}} <flag answer="p"></flag></li>
 	</ul>
 
 	<div class="controls">
@@ -64,10 +64,10 @@
 			<md-button class="md-raised md-primary" ng-click="dashboard.api.sendScan( scanCode )"  ng-bind="main.api.config.scan">SCAN</md-button>
 			<md-button class="md-raised md-warn" ng-click="dashboard.api.sendBumper()" ng-bind="main.api.config.bumper">BUMPER</md-button>
 			<md-input-container>
-				<input placeholder="Phone number" ng-model="phoneNumber">
+				<input placeholder="Phone number" ng-model="dashboard.phoneNumber">
 			</md-input-container>
 
-			<md-button class="md-raised md-primary" ng-click="dashboard.api.call( phoneNumber )">CALL</md-button>
+			<md-button class="md-raised md-primary" ng-click="dashboard.api.call( dashboard.phoneNumber )">CALL</md-button>
 			<md-select ng-model="dashboard.sound" placeholder="sound">
 				<md-option value="call">Call</md-option>
 				<md-option value="ambiance">Ambiance</md-option>
@@ -85,7 +85,7 @@
 			</md-input-container>
 			<md-button class="md-raised md-primary" ng-click="dashboard.sendScene()">Send</md-button>
 			<color-picker ng-model="dmx.color" options="{format:'rgb'}"></color-picker>
-			
+			<md-button class="md-raised md-secondary" ng-click="dashboard.debugPhonesDMX()">Debug ☎</md-button>
 		</div>
 
 			<md-checkbox ng-model="dashboard.api.debug">

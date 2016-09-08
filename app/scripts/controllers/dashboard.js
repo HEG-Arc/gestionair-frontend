@@ -8,7 +8,7 @@
  * Controller of the gestionairFrontendApp
  */
 angular.module('gestionairFrontendApp')
-  .controller('DashboardCtrl', function ( $scope, api ) {
+  .controller('DashboardCtrl', function ( $scope, api, $timeout ) {
     // display states of player in progress
     // display summary stats
     var dashboard = this;
@@ -97,6 +97,52 @@ angular.module('gestionairFrontendApp')
         }
       }
     });
+
+    var debugTimeDuration = 5000;
+
+    function debugPhoneDMX(number, startIn){
+      var msg = {
+        'number': number
+      };
+      // call phone to check lights
+      $timeout(function() {
+        msg.type = 'PHONE_RINGING';
+        api.sendEvent(msg);
+      }, startIn + debugTimeDuration);
+
+      // simulate answering
+      $timeout(function() {
+        msg.type = 'PLAYER_ANSWERING';
+        api.sendEvent(msg);
+      }, startIn + debugTimeDuration * 2);
+      // simulate wrong
+      $timeout(function() {
+      msg.type = 'PLAYER_ANSWERED';
+      msg.correct = 0;
+      api.sendEvent(msg);
+      }, startIn + debugTimeDuration * 3);
+      // simulate right
+      $timeout(function() {
+      msg.type = 'PLAYER_ANSWERED';
+      msg.correct = 1;
+      api.sendEvent(msg);
+      }, startIn + debugTimeDuration * 4);
+      // off
+      $timeout(function() {
+      msg.type = 'PHONE_STOPRINGING';
+      api.sendEvent(msg);
+      }, startIn + debugTimeDuration * 5);
+    }
+
+    dashboard.debugPhonesDMX = function() {
+      if (dashboard.phoneNumber) {
+        debugPhoneDMX(dashboard.phoneNumber, 0);
+      } else {
+        for (var i=0; i <10; i++) {
+          debugPhoneDMX(1001 + i, i * debugTimeDuration);
+        }
+      }
+    };
 
 
     $scope.api = api;

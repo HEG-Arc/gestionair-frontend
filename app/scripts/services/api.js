@@ -260,6 +260,10 @@ angular.module('gestionairFrontendApp')
        }));
     };
 
+    api.sendEvent = function (msg) {
+      server.send('/exchange/gestionair/simulation', {}, angular.toJson(msg));
+    };
+
     api.addScore = function (player) {
         api.scores.unshift(player);
         while (api.scores.length > api.config.scores_nb_entries) {
