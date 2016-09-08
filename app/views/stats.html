@@ -27,15 +27,9 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Joué:</th>
-                        <td>{{$ctrl.data.stats.retention.last_answer}}</td>
-                        <td> ( {{$ctrl.data.stats.retention.last_answer/$ctrl.data.stats.retention.register*100|number:2}}% )
-                        </td>
-                    </tr>
-                    <tr>
                         <th>Fini:</th>
                         <td>{{$ctrl.data.stats.retention.limit}}</td>
-                        <td>({{$ctrl.data.stats.retention.limit/$ctrl.data.stats.retention.last_answer*100|number:2}}% )</td>
+                        <td>({{$ctrl.data.stats.retention.limit/$ctrl.data.stats.retention.register*100|number:2}}% )</td>
                     </tr>
                     <tr>
                         <th>Scanné:</th>
