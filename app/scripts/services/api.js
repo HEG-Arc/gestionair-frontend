@@ -205,7 +205,7 @@ angular.module('gestionairFrontendApp')
           id: id,
           name: '?'
         };
-        if ( id > -1 ) {
+        if ( id > 1 ) { // -1 and 1 are  sent with kids code
           api.players[id] = player;
         }
       }
