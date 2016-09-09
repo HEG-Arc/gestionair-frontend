@@ -30,6 +30,7 @@
     "jshint-stylish": "^2.2.1",
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
+    "serve-static": "^1.11.1",
     "time-grunt": "^1.0.0",
     "bower-npm-resolver": "^0.5.1"
   },
