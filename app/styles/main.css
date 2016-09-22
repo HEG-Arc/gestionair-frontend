@@ -176,6 +176,7 @@ md-content h2{
 
 #scoreboard .row {
   height: 70px;
+  min-height: 70px;
   line-height: 70px;
   font-size: 38px;
 }
