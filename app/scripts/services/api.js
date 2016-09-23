@@ -264,10 +264,22 @@ angular.module('gestionairFrontendApp')
       server.send('/exchange/gestionair/simulation', {}, angular.toJson(msg));
     };
 
+    function playerInScores(player) {
+      for (var i=0; i < api.scores.length; i++) {
+        if (api.scores[i].id === player.id) {
+          return true;
+        }
+      }
+      return false;
+    }
+
     api.addScore = function (player) {
-        api.scores.unshift(player);
-        while (api.scores.length > api.config.scores_nb_entries) {
-          api.scores.pop();
+        // protect player list from duplicate events...
+        if (!playerInScores(player)) {
+          api.scores.unshift(player);
+          while (api.scores.length > api.config.scores_nb_entries) {
+            api.scores.pop();
+          }
         }
     };
 
